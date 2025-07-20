@@ -1,0 +1,109 @@
+{
+  "name": "pravis-boutique-pwa",
+  "version": "1.0.0",
+  "description": "Pravis Boutique Progressive Web App with AI Voice Agent",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "nuxi start",
+    "generate": "nuxi generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "preview": "nuxi preview",
+    "electron:dev": "NODE_ENV=development electron .",
+    "electron:build": "npm run generate && NODE_ENV=production electron-builder",
+    "electron:dist": "npm run generate && NODE_ENV=production electron-builder --publish=never",
+    "app:start": "npm run electron:dev"
+  },
+  "keywords": [
+    "boutique",
+    "pwa",
+    "vue",
+    "nuxt",
+    "ai-agent",
+    "voice",
+    "e-commerce"
+  ],
+  "author": "Pravis Boutique Team",
+  "license": "MIT",
+  "dependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/tailwindcss": "^6.8.4",
+    "@pinia/nuxt": "^0.5.1",
+    "@vite-pwa/nuxt": "^0.4.0",
+    "@vueuse/core": "^10.5.0",
+    "@vueuse/nuxt": "^10.5.0",
+    "nuxt": "^3.8.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.8"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/eslint-config": "^12.0.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "autoprefixer": "^10.4.16",
+    "electron": "^37.2.3",
+    "electron-builder": "^26.0.12",
+    "eslint": "^8.52.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-vue": "^9.18.1",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
+  },
+  "build": {
+    "appId": "com.pravis.boutique",
+    "productName": "Pravis Boutique",
+    "directories": {
+      "buildResources": "electron/build",
+      "output": "dist-electron"
+    },
+    "files": [
+      "electron/**/*",
+      ".output/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.lifestyle",
+      "icon": "electron/build/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "darkModeSupport": true,
+      "gatekeeperAssess": false
+    },
+    "dmg": {
+      "title": "Pravis Boutique",
+      "background": "electron/build/background.png",
+      "window": {
+        "width": 600,
+        "height": 400
+      },
+      "contents": [
+        {
+          "x": 150,
+          "y": 200,
+          "type": "file"
+        },
+        {
+          "x": 450,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  }
+}

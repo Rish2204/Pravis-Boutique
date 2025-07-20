@@ -2,13 +2,13 @@
 
 # MCP - My Custom Process
 
-# 1. Run tests (disabled)
-# echo "Running tests..."
-# npm run lint:fix -- --ignore-path .eslintignore
-# if [ $? -ne 0 ]; then
-#   echo "Tests failed. Aborting."
-#   exit 1
-# fi
+# 1. Run tests
+echo "Running tests..."
+npm run lint:fix -- --ignore-path .eslintignore
+if [ $? -ne 0 ]; then
+  echo "Tests failed. Aborting."
+  exit 1
+fi
 
 # 2. Check GitHub status
 echo "\nChecking GitHub status..."
@@ -32,11 +32,8 @@ openhands_pid=$!
 echo "\nStarting the development server..."
 npm run dev &
 
-# 5. Open the application in the default browser
+# 4. Open the application in the default browser
 echo "\nOpening the application in your default browser..."
 sleep 5 # Give the server a moment to start
 open http://localhost:3000
-
-# To stop the OpenHands container, you can run:
-# kill $openhands_pid
 
