@@ -1,0 +1,39 @@
+#!/bin/zsh
+
+# MCP - My Custom Process
+
+# 1. Run tests
+echo "Running tests..."
+npm run lint
+if [ $? -ne 0 ]; then
+  echo "Tests failed. Aborting."
+  exit 1
+fi
+
+# 2. Check GitHub status
+echo "\nChecking GitHub status..."
+if curl -s https://www.githubstatus.com/ | grep -q "All Systems Operational"; then
+  echo "GitHub status: All Systems Operational"
+else
+  echo "GitHub status: Not all systems operational. Check https://www.githubstatus.com/ for more details."
+fi
+
+# 3. Start OpenHands
+echo "\nStarting OpenHands..."
+docker run -it --rm --pull=always \
+  -e SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.all-hands.dev/all-hands-ai/runtime:0.49-nikolaik \
+  -e LOG_ALL_EVENTS=true \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$(pwd)":/app \
+  docker.all-hands.dev/all-hands-ai/runtime:0.49-nikolaik &
+openhands_pid=$!
+
+# 4. Start the development server
+echo "\nStarting the development server..."
+npm run dev &
+
+# 4. Open the application in the default browser
+echo "\nOpening the application in your default browser..."
+sleep 5 # Give the server a moment to start
+open http://localhost:3000
+
