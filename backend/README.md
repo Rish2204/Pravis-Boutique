@@ -1,6 +1,6 @@
-# FastAPI Backend
+# Pravis Boutique API
 
-A simple FastAPI backend application with a "Hello, World!" endpoint.
+A FastAPI backend for the Pravis Boutique application, providing voice API integration, authentication, and analytics.
 
 ## Prerequisites
 
@@ -12,15 +12,30 @@ A simple FastAPI backend application with a "Hello, World!" endpoint.
 
 ```
 backend/
+├── app/                 # Application package
+│   ├── api/             # API routes and endpoints
+│   ├── core/            # Core functionality (config, security, etc.)
+│   ├── db/              # Database connection and session management
+│   ├── middleware/      # Custom middleware (logging, cache, etc.)
+│   ├── models/          # SQLAlchemy ORM models
+│   ├── repositories/    # Data access layer
+│   ├── schemas/         # Pydantic schemas for validation
+│   └── services/        # Business logic services
+├── docs/                # Documentation
+│   ├── developer_guide.md    # Guide for developers
+│   ├── monitoring_guide.md   # Monitoring and logging guide
+│   ├── scaling_strategy.md   # Scaling strategy
+│   └── feedback_analytics_guide.md  # Feedback collection guide
+├── migrations/          # Alembic database migrations
 ├── main.py              # Main FastAPI application file
 ├── database.py          # Database configuration and connection
 ├── db_utils.py          # Database utility functions
 ├── requirements.txt     # Python dependencies
 ├── .env.example         # Example environment variables
 ├── .env                 # Your local environment variables (not in git)
-├── .gitignore          # Files to ignore in git
-├── venv/               # Virtual environment (created during setup)
-└── README.md           # This file
+├── .gitignore           # Files to ignore in git
+├── venv/                # Virtual environment (created during setup)
+└── README.md            # This file
 ```
 
 ## Quick Setup
@@ -148,13 +163,36 @@ Always ensure your virtual environment is activated before running the applicati
 - **FastAPI**: Modern, fast web framework for building APIs with Python
 - **Uvicorn**: Lightning-fast ASGI server implementation
 
-## Next Steps
+## Documentation
 
-- Add more endpoints to `main.py`
-- Create data models using Pydantic
-- Add database integration (e.g., MemSQL)
-- Implement authentication
-- Add tests
+Comprehensive documentation is available in the `docs/` directory:
+
+- [Developer Guide](./docs/developer_guide.md) - Complete guide for developers
+- [Monitoring Guide](./docs/monitoring_guide.md) - How to monitor user/AI interactions
+- [Scaling Strategy](./docs/scaling_strategy.md) - Plan for scaling the application
+- [Feedback & Analytics](./docs/feedback_analytics_guide.md) - How to collect and use feedback
+
+## Key Features
+
+- **Authentication**: JWT-based auth with OAuth2 password flow
+- **Voice API Integration**: Transcription, text-to-speech, and chat endpoints
+- **Monitoring**: Integration with Azure Application Insights and Log Analytics
+- **Caching**: Redis-based response caching
+- **Rate Limiting**: Configurable rate limiting to prevent abuse
+- **AI Interaction Logging**: Comprehensive logging for model training
+- **Feedback Collection**: User feedback and analytics tracking
+
+## Scaling Strategy
+
+The application is designed for horizontal scaling:
+
+- **Stateless Services**: No local state, enabling horizontal scaling
+- **Database Sharding**: Support for database sharding for high data volumes
+- **Azure Integration**: Uses Azure services for scalable storage and monitoring
+- **Secret Management**: Azure Key Vault for secure credential management
+- **Caching**: Multi-level caching strategy to reduce database load
+
+See the [Scaling Strategy](./docs/scaling_strategy.md) document for more details.
 
 ## Support
 

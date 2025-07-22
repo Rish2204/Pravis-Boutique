@@ -1,0 +1,262 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  lint-backend:
+    name: Lint Backend
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 black isort
+          pip install -r requirements.txt
+      
+      - name: Run linters
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          black --check .
+          isort --check-only --profile black .
+
+  test-backend:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    needs: lint-backend
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+          pip install -r requirements.txt
+      
+      - name: Run tests with coverage
+        run: |
+          pytest --cov=app tests/
+      
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-coverage
+          path: htmlcov/
+
+  lint-frontend:
+    name: Lint Frontend
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'frontend/pravis-boutique/package-lock.json'
+      
+      - name: Install dependencies
+        run: |
+          cd frontend/pravis-boutique
+          npm ci
+      
+      - name: Run linters
+        run: |
+          cd frontend/pravis-boutique
+          npm run lint
+
+  test-frontend:
+    name: Test Frontend
+    runs-on: ubuntu-latest
+    needs: lint-frontend
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'frontend/pravis-boutique/package-lock.json'
+      
+      - name: Install dependencies
+        run: |
+          cd frontend/pravis-boutique
+          npm ci
+      
+      - name: Run unit tests
+        run: |
+          cd frontend/pravis-boutique
+          npm test
+      
+      - name: Run E2E tests
+        run: |
+          cd frontend/pravis-boutique
+          npm run test:e2e:headless
+
+  build-backend:
+    name: Build Backend
+    runs-on: ubuntu-latest
+    needs: test-backend
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: Log in to Azure Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.ACR_LOGIN_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.ACR_LOGIN_SERVER }}/pravis-boutique/backend:${{ github.sha }},${{ secrets.ACR_LOGIN_SERVER }}/pravis-boutique/backend:latest
+          cache-from: type=registry,ref=${{ secrets.ACR_LOGIN_SERVER }}/pravis-boutique/backend:latest
+          cache-to: type=inline
+
+  build-frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+    needs: test-frontend
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'frontend/pravis-boutique/package-lock.json'
+      
+      - name: Install dependencies
+        run: |
+          cd frontend/pravis-boutique
+          npm ci
+      
+      - name: Build frontend
+        run: |
+          cd frontend/pravis-boutique
+          npm run generate
+      
+      - name: Upload frontend build
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: frontend/pravis-boutique/.output/public
+
+  deploy-backend:
+    name: Deploy Backend to Azure Container Instances
+    runs-on: ubuntu-latest
+    needs: build-backend
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Deploy to Azure Container Instances
+        uses: azure/aci-deploy@v1
+        with:
+          resource-group: ${{ secrets.AZURE_RESOURCE_GROUP }}
+          dns-name-label: pravis-boutique-backend-${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+          image: ${{ secrets.ACR_LOGIN_SERVER }}/pravis-boutique/backend:${{ github.sha }}
+          registry-login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+          registry-username: ${{ secrets.ACR_USERNAME }}
+          registry-password: ${{ secrets.ACR_PASSWORD }}
+          name: pravis-boutique-backend-${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+          location: ${{ secrets.AZURE_LOCATION }}
+          ports: 8000
+          environment-variables: |
+            ENVIRONMENT=${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
+            DATABASE_URL=${{ github.ref == 'refs/heads/main' && secrets.PROD_DATABASE_URL || secrets.DEV_DATABASE_URL }}
+            OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+            SECRET_KEY=${{ secrets.SECRET_KEY }}
+            AZURE_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+            REDIS_URL=${{ github.ref == 'refs/heads/main' && secrets.PROD_REDIS_URL || secrets.DEV_REDIS_URL }}
+
+  deploy-frontend:
+    name: Deploy Frontend to Azure Static Web Apps
+    runs-on: ubuntu-latest
+    needs: build-frontend
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Download frontend build
+        uses: actions/download-artifact@v3
+        with:
+          name: frontend-build
+          path: frontend-build
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Deploy to Azure Static Web Apps
+        id: deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "frontend-build"
+          api_location: ""
+          output_location: ""
+          skip_app_build: true
+          deployment_environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
+
+  notify:
+    name: Notify Deployment Status
+    runs-on: ubuntu-latest
+    needs: [deploy-backend, deploy-frontend]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    
+    steps:
+      - name: Send deployment status notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: deployments
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_TITLE: "Deployment to ${{ github.ref == 'refs/heads/main' && 'Production' || 'Development' }} Completed"
+          SLACK_MESSAGE: "Backend deployed to ACI and Frontend deployed to Static Web Apps"
+          SLACK_FOOTER: "Pravis Boutique CI/CD Pipeline"
