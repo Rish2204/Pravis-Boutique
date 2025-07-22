@@ -121,6 +121,13 @@
           </ul>
         </div>
 
+<div class="mt-12 pt-8 border-t">
+          <h2 class="font-display text-2xl font-bold text-gray-800 mb-6 text-center">
+            Your Privacy Controls
+          </h2>
+          <PrivacyControls />
+        </div>
+        
         <div class="mt-8 pt-8 border-t text-center">
           <button
             class="btn-primary px-6 py-3"
@@ -135,8 +142,13 @@
 </template>
 
 <script>
+import PrivacyControls from '@/components/common/PrivacyControls.vue';
+
 export default {
   name: 'PrivacyPage',
+  components: {
+    PrivacyControls
+  },
   data () {
     return {
       lastUpdated: new Date().toLocaleDateString('en-US', {

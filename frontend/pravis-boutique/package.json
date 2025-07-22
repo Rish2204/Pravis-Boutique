@@ -15,7 +15,15 @@
     "electron:dev": "NODE_ENV=development electron .",
     "electron:build": "npm run generate && NODE_ENV=production electron-builder",
     "electron:dist": "npm run generate && NODE_ENV=production electron-builder --publish=never",
-    "app:start": "npm run electron:dev"
+    "app:start": "npm run electron:dev",
+    "setup:pwa": "chmod +x ./scripts/setup-push-notifications.sh && ./scripts/setup-push-notifications.sh",
+    "generate:vapid": "node ./server/utils/generate-vapid-keys.js",
+    "deploy:azure": "npm run generate && az staticwebapp deploy --source-location ./.output/public",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "cypress open",
+    "test:e2e:headless": "cypress run"
   },
   "keywords": [
     "boutique",
@@ -37,20 +45,27 @@
     "@vueuse/nuxt": "^10.5.0",
     "nuxt": "^3.8.0",
     "pinia": "^2.1.7",
-    "vue": "^3.3.8"
+    "vue": "^3.3.8",
+    "web-push": "^3.6.6",
+    "workbox-window": "^7.0.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/eslint-config": "^12.0.0",
     "@nuxtjs/eslint-module": "^4.1.0",
+    "@testing-library/vue": "^7.0.0",
+    "@vitest/coverage-v8": "^0.34.6",
     "autoprefixer": "^10.4.16",
+    "cypress": "^13.6.0",
     "electron": "^37.2.3",
     "electron-builder": "^26.0.12",
     "eslint": "^8.52.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.18.1",
+    "happy-dom": "^12.10.3",
     "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.3.5",
+    "vitest": "^0.34.6"
   },
   "build": {
     "appId": "com.pravis.boutique",

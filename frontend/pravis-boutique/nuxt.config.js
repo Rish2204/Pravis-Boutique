@@ -4,7 +4,9 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxtjs/color-mode', // For dark mode support with proper contrast
+    '@nuxt/image' // For optimized images
   ],
 
   // PWA Settings
@@ -30,11 +32,78 @@ export default defineNuxtConfig({
           src: '/icon-512x512.png',
           sizes: '512x512',
           type: 'image/png'
+        },
+        {
+          src: '/icon-512x512-maskable.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable'
+        }
+      ],
+      orientation: 'portrait',
+      categories: ['shopping', 'fashion', 'lifestyle'],
+      shortcuts: [
+        {
+          name: 'Shop Now',
+          url: '/shop',
+          description: 'Browse our collection'
+        },
+        {
+          name: 'Cart',
+          url: '/cart',
+          description: 'View your shopping cart'
         }
       ]
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg,gif,webp}']
+      globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg,gif,webp,mp3}'],
+      navigateFallback: '/',
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'google-fonts-cache',
+            expiration: {
+              maxEntries: 10,
+              maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+            }
+          }
+        },
+        {
+          urlPattern: /^https:\/\/fonts\.gstatic\.com/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'gstatic-fonts-cache',
+            expiration: {
+              maxEntries: 10,
+              maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+            }
+          }
+        },
+        {
+          urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'images-cache',
+            expiration: {
+              maxEntries: 100,
+              maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+            }
+          }
+        },
+        {
+          urlPattern: /\.(?:mp3)$/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'audio-cache',
+            expiration: {
+              maxEntries: 20,
+              maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+            }
+          }
+        }
+      ]
     }
   },
 
@@ -46,6 +115,9 @@ export default defineNuxtConfig({
   // Head configuration
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en'
+      },
       title: 'Pravis Boutique - AI-Powered Fashion',
       meta: [
         { charset: 'utf-8' },
@@ -55,7 +127,9 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'Pravis Boutique - AI-Powered Fashion' },
         { property: 'og:description', content: 'Experience fashion with our AI voice agent Ask Pravi' },
         { property: 'og:image', content: '/og-image.jpg' },
-        { name: 'twitter:card', content: 'summary_large_image' }
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'theme-color', content: '#8B0000' },
+        { name: 'color-scheme', content: 'light dark' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -64,7 +138,10 @@ export default defineNuxtConfig({
         {
           href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap',
           rel: 'stylesheet'
-        }
+        },
+        { rel: 'preload', as: 'font', type: 'font/woff2', href: '/fonts/playfair-display-v30-latin-regular.woff2', crossorigin: '' },
+        { rel: 'preload', as: 'font', type: 'font/woff2', href: '/fonts/inter-v12-latin-regular.woff2', crossorigin: '' },
+        { rel: 'preload', as: 'image', href: '/images/hero-banner.webp' }
       ]
     }
   },
@@ -105,7 +182,46 @@ export default defineNuxtConfig({
 
   // Build configuration
   build: {
-    transpile: ['@vueuse/core']
+    transpile: ['@vueuse/core'],
+    // Optimize chunks for better loading performance
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: undefined,
+        maxSize: 244000
+      }
+    }
+  },
+  
+  // Image optimization
+  image: {
+    provider: 'ipx',
+    quality: 80,
+    format: ['webp', 'jpg', 'png'],
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536
+    }
+  },
+  
+  // Performance optimizations
+  performance: {
+    resourceHints: true,
+  },
+  
+  // Color mode for accessibility
+  colorMode: {
+    classSuffix: '',
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme'
   },
 
   // Tailwind CSS configuration
@@ -146,5 +262,15 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+  
+  // Accessibility configurations
+  a11y: {
+    // Enable dev-time a11y audits
+    enabled: true,
+    // Report issues in the console during development
+    debug: process.env.NODE_ENV !== 'production',
+    // Add a11y testing during build
+    runBeforeBuild: process.env.NODE_ENV === 'production'
   }
 })
