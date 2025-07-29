@@ -25,7 +25,6 @@ class User(Base):
     
     # Relationships
     analytics_events = relationship("AnalyticsEvent", back_populates="user")
-    voice_interactions = relationship("VoiceInteraction", back_populates="user")
     sessions = relationship("UserSession", back_populates="user")
     
     def __repr__(self):
