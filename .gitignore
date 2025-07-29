@@ -1,56 +1,64 @@
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Virtual environments
+# Python Virtual Environments
 venv/
+.venv/
 env/
+.env/
 ENV/
+env.bak/
+venv.bak/
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-
-# IDE
+# IDE Files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# Database
-*.db
-*.sqlite3
-
-# Logs
-*.log
-
-# OS
+# OS Generated Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Protected documents (decrypted versions)
-MCP_ARCHITECTURE.md
+# Environment Files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Node modules (for frontend)
+# Node.js
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Build outputs
 dist/
 build/
-*.egg-info/
+.nuxt/
+.next/
+coverage/
 
-# Test coverage
-htmlcov/
-.coverage
-.pytest_cache/
+# Database
+*.db
+*.sqlite
+*.sqlite3
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Logs
+logs/
+*.log
 
-# Azure
-local.settings.json
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
