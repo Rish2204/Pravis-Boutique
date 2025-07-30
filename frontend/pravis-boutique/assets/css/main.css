@@ -5,27 +5,30 @@
 /* Custom CSS for Pravis Handlooms */
 
 :root {
-  /* Primary Brand Colors - Consistent Red Theme */
-  --pravis-primary: #B91C1C;    /* Deep red (pravis-700) */
-  --pravis-secondary: #DC2626;  /* Primary red (pravis-600) */
-  --pravis-dark: #991B1B;       /* Dark red (pravis-800) */
-  --pravis-light: #EF4444;      /* Light red (pravis-500) */
-  --pravis-accent: #F59E0B;     /* Gold accent */
+  /* Primary Brand Colors - Deep Maroon & Gold Theme */
+  --pravis-primary: #8B0000;    /* Deep maroon (brand primary) */
+  --pravis-secondary: #A0001C;  /* Brighter maroon for emphasis */
+  --pravis-dark: #5F0000;       /* Dark maroon for hover states */
+  --pravis-light: #fdf2f8;      /* Very light maroon tint */
+  --pravis-accent: #D4AF37;     /* Warm gold accent */
+  --pravis-dark-gold: #B8860B;  /* Dark gold for hover */
   
   /* Background Colors */
   --background-primary: #ffffff;
-  --background-secondary: #FEF2F2; /* Very light red tint */
-  --background-light: #FEE2E2;     /* Light red background */
+  --background-secondary: #FDF2F8; /* Very light maroon tint */
+  --background-light: #F8E8EC;     /* Light maroon background */
+  --background-cream: #FEF7ED;     /* Warm cream */
   
   /* Text Colors */
-  --text-primary: #1F2937;    /* Dark gray */
-  --text-secondary: #6B7280;  /* Medium gray */
-  --text-on-red: #ffffff;     /* White on red */
+  --text-primary: #1F2937;      /* Dark gray */
+  --text-secondary: #6B7280;    /* Medium gray */
+  --text-on-maroon: #ffffff;    /* White on maroon */
+  --text-gold: #D4AF37;         /* Gold text */
   
   /* Border Colors */
   --border-light: #E5E7EB;
-  --border-red: #B91C1C;
-  --border-accent: #F59E0B;
+  --border-maroon: #8B0000;
+  --border-accent: #D4AF37;
 }
 
 * {

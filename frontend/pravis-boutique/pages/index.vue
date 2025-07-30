@@ -4,30 +4,37 @@
     <div class="hero-section mt-4 md:mt-8">
     <div class="container mx-auto px-4 py-20 text-center">
       <div class="mb-12">
-        <div class="w-24 h-24 mx-auto mb-8 bg-pravis-500 rounded-full flex items-center justify-center shadow-lg">
-          <span class="text-4xl font-bold text-white">P</span>
+        <div class="w-32 h-32 mx-auto mb-8">
+          <img src="/pravis-logo.svg" alt="Pravis Logo" class="h-full w-full object-contain drop-shadow-lg" />
         </div>
       </div>
 
-      <h1 class="hero-title text-5xl md:text-6xl font-display font-bold text-pravis-900 mb-8 leading-tight">
-        Pravis Handlooms
+      <h1 class="hero-title text-5xl md:text-6xl font-display font-bold text-pravis-900 mb-4 leading-tight">
+        Pravis
       </h1>
+      <h2 class="text-3xl md:text-4xl font-display italic text-pravis-600 mb-8 tracking-wide">
+        Drape in Elegance
+      </h2>
       
       <p class="text-xl text-pravis-700 mb-16 max-w-3xl mx-auto leading-relaxed">
-        <span class="handloom-highlight">Six yards of pure grace</span>, rooted in culture, styled with elegance.
-        Discover authentic handwoven treasures from master artisans across India.
+        <span class="handloom-highlight font-semibold">Six yards of pure grace</span>, rooted in culture, styled with elegance.
+        <br>
+        <span class="text-pravis-600 mt-2 block">Sarees • Banaras • Kanchi • All Handlooms</span>
+        <span class="text-pravis-600">Accessories • Jewellery • Clutches</span>
+        <br>
+        <span class="text-pravis-600">Readymades • Blouses • Co-Ord Sets • Kurtis • Suits</span>
       </p>
 
       <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-24">
         <button 
-          class="handloom-btn primary-btn bg-pravis-500 hover:bg-pravis-600 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg"
+          class="handloom-btn primary-btn bg-pravis-500 hover:bg-pravis-600 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg border-2 border-gold-500"
           @click="navigateToShop"
         >
           🧵 Browse Collection
         </button>
         <button 
-          class="handloom-btn secondary-btn bg-white hover:bg-pravis-50 text-pravis-500 border-2 border-pravis-300 px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg"
+          class="handloom-btn secondary-btn bg-gold-500 hover:bg-gold-600 text-pravis-900 px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg"
           @click="navigateToContact"
         >
           📞 Contact Us
