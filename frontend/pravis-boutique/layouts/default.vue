@@ -1,85 +1,76 @@
 <template>
   <div class="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-    <!-- Header -->
-    <header class="bg-pravis-600 text-white shadow-md">
-      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-            <span class="text-2xl font-bold text-pravis-600">P</span>
-          </div>
-          <span class="text-2xl font-bold">Pravis Boutique</span>
-        </NuxtLink>
-
-        <!-- Navigation -->
-        <nav class="hidden md:flex space-x-6">
-          <NuxtLink 
-            to="/" 
-            class="hover:text-pravis-200 transition duration-150 px-3 py-2 rounded-md"
-            :class="{ 'bg-pravis-700': $route.path === '/' }"
-          >
-            Home
-          </NuxtLink>
-          <NuxtLink 
-            to="/shop" 
-            class="hover:text-pravis-200 transition duration-150 px-3 py-2 rounded-md"
-            :class="{ 'bg-pravis-700': $route.path.startsWith('/shop') }"
-          >
-            Shop
-          </NuxtLink>
-          <NuxtLink 
-            to="/contact" 
-            class="hover:text-pravis-200 transition duration-150 px-3 py-2 rounded-md"
-            :class="{ 'bg-pravis-700': $route.path === '/contact' }"
-          >
-            Contact
-          </NuxtLink>
-        </nav>
-
-        <!-- Mobile menu and cart -->
-        <div class="flex items-center space-x-4">
-          <!-- Cart -->
-          <NuxtLink to="/cart" class="relative p-2 hover:bg-pravis-700 rounded-full transition">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.6 8H19M7 13v4a2 2 0 002 2h8a2 2 0 002-2v-4"/>
-            </svg>
-            <span v-if="cartCount > 0" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              {{ cartCount }}
+    <!-- Elegant Header -->
+    <header class="bg-pravis-500 text-white shadow-lg relative">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <!-- Simplified Logo -->
+          <NuxtLink to="/" class="flex items-center space-x-3 z-10">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-md">
+              <span class="text-xl md:text-2xl font-bold text-pravis-500">P</span>
+            </div>
+            <span class="hidden lg:inline font-display text-2xl ml-2 align-middle tracking-wide">
+              Pravis Handlooms
             </span>
           </NuxtLink>
 
-          <!-- Mobile menu button -->
-          <button 
-            @click="mobileMenuOpen = !mobileMenuOpen"
-            class="md:hidden p-2 hover:bg-pravis-700 rounded-md transition"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-          </button>
+          <!-- Streamlined Navigation -->
+          <nav class="hidden md:flex items-center space-x-8 text-lg">
+            <NuxtLink 
+              to="/shop" 
+              class="text-white hover:text-pravis-200 transition duration-200 font-medium"
+              :class="{ 'text-pravis-200 border-b-2 border-pravis-200 pb-1': $route.path.startsWith('/shop') }"
+            >
+              Shop
+            </NuxtLink>
+            <NuxtLink 
+              to="/contact" 
+              class="text-white hover:text-pravis-200 transition duration-200 font-medium"
+              :class="{ 'text-pravis-200 border-b-2 border-pravis-200 pb-1': $route.path === '/contact' }"
+            >
+              Contact
+            </NuxtLink>
+          </nav>
+
+          <!-- Essential Actions -->
+          <div class="flex items-center space-x-4">
+            <!-- Cart Icon -->
+            <NuxtLink to="/cart" class="relative hover:bg-pravis-600 p-2 rounded-full transition duration-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.6 8H19M7 13v4a2 2 0 002 2h8a2 2 0 002-2v-4"/>
+              </svg>
+              <span v-if="cartCount > 0" class="absolute -top-1 -right-1 bg-pravis-300 text-pravis-800 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {{ cartCount }}
+              </span>
+            </NuxtLink>
+
+            <!-- Mobile menu button -->
+            <button 
+              @click="mobileMenuOpen = !mobileMenuOpen"
+              class="md:hidden p-2 hover:bg-pravis-600 rounded-md transition duration-200"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path v-if="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Mobile menu -->
-      <div v-if="mobileMenuOpen" class="md:hidden bg-pravis-700">
-        <div class="px-4 py-2 space-y-2">
-          <NuxtLink 
-            to="/" 
-            class="block px-3 py-2 rounded-md hover:bg-pravis-800 transition"
-            @click="mobileMenuOpen = false"
-          >
-            Home
-          </NuxtLink>
+      <!-- Mobile Navigation -->
+      <div v-if="mobileMenuOpen" class="md:hidden bg-pravis-800 border-t border-pravis-600">
+        <div class="px-6 py-4 space-y-3">
           <NuxtLink 
             to="/shop" 
-            class="block px-3 py-2 rounded-md hover:bg-pravis-800 transition"
+            class="block text-white hover:text-pravis-200 py-2 transition duration-200"
             @click="mobileMenuOpen = false"
           >
             Shop
           </NuxtLink>
           <NuxtLink 
             to="/contact" 
-            class="block px-3 py-2 rounded-md hover:bg-pravis-800 transition"
+            class="block text-white hover:text-pravis-200 py-2 transition duration-200"
             @click="mobileMenuOpen = false"
           >
             Contact
@@ -94,34 +85,44 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-pravis-800 text-white py-8">
-      <div class="container mx-auto px-4">
+    <footer class="bg-pravis-800 text-white py-12">
+      <div class="container mx-auto px-6">
         <div class="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 class="text-lg font-semibold mb-4">Pravis Boutique</h3>
-            <p class="text-pravis-200">
-              Authentic handloom textiles crafted with tradition and care.
+            <h3 class="text-lg font-display font-semibold mb-4">Pravis Handlooms</h3>
+            <p class="text-pravis-200 leading-relaxed">
+              Six yards of pure grace, rooted in culture, styled with elegance.
             </p>
           </div>
           <div>
-            <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 class="text-lg font-display font-semibold mb-4">Explore</h3>
             <div class="space-y-2">
-              <NuxtLink to="/" class="block text-pravis-200 hover:text-white transition">Home</NuxtLink>
-              <NuxtLink to="/shop" class="block text-pravis-200 hover:text-white transition">Shop</NuxtLink>
-              <NuxtLink to="/contact" class="block text-pravis-200 hover:text-white transition">Contact</NuxtLink>
+              <NuxtLink to="/shop" class="block text-pravis-200 hover:text-pravis-300 transition">Shop Collection</NuxtLink>
+              <NuxtLink to="/contact" class="block text-pravis-200 hover:text-pravis-300 transition">Contact Us</NuxtLink>
             </div>
           </div>
           <div>
-            <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+            <h3 class="text-lg font-display font-semibold mb-4">Connect</h3>
             <div class="text-pravis-200 space-y-2">
-              <p>📧 info@pravisboutique.com</p>
+              <p>📧 info@pravishandlooms.com</p>
               <p>📞 +91 98765 43210</p>
-              <p>📍 Handloom District, India</p>
+              <p>📍 Handloom Heritage, India</p>
+              <a 
+                href="https://www.instagram.com/pravis.handlooms/?hl=en" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-pravis-200 hover:text-pravis-300 transition-colors duration-200 mt-3"
+              >
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                Follow us on Instagram
+              </a>
             </div>
           </div>
         </div>
         <div class="border-t border-pravis-700 mt-8 pt-8 text-center text-pravis-200">
-          <p>&copy; 2024 Pravis Boutique. All rights reserved.</p>
+          <p>&copy; 2025 Pravis Handlooms. Crafted with tradition, styled with love.</p>
         </div>
       </div>
     </footer>
