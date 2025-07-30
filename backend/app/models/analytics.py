@@ -27,7 +27,9 @@ class AnalyticsEvent(Base):
         return f"<AnalyticsEvent(id={self.id}, event_type='{self.event_type}', user_id={self.user_id})>"
 
 
+class VoiceAgentInteraction(Base):
     """Model for tracking voice agent interactions"""
+    __tablename__ = "voice_agent_interactions"
     
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=True, index=True)
@@ -39,8 +41,10 @@ class AnalyticsEvent(Base):
     session_id = Column(String(50), nullable=True, index=True)
     
     # Relationships
+    user = relationship("User", back_populates="voice_interactions")
     
     def __repr__(self):
+        return f"<VoiceAgentInteraction(id={self.id}, user_id={self.user_id}, session_id='{self.session_id}')>"
 
 
 class UserSession(Base):

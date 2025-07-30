@@ -9,7 +9,7 @@ from app.api.api_v1.api import api_router
 from app.middleware.error_handlers import register_exception_handlers
 from app.middleware.logging import setup_logging
 from app.middleware.rate_limiter import add_rate_limiter
-from app.middleware.cache import CacheMiddleware
+# from app.middleware.cache import CacheMiddleware  # Temporarily disabled for Python 3.12
 
 # Configure logging
 logging.basicConfig(

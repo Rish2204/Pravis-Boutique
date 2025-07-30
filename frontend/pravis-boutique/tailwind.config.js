@@ -11,19 +11,44 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Brand colors - customize these to match your brand
+        // Handloom Brand Colors - Authentic Indian Textile Palette (Instagram Inspired)
         pravis: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
+          50: '#fdf7f0',   // Cream silk
+          100: '#fbefd6',   // Light cotton
+          200: '#f6d5a7',   // Pale gold
+          300: '#e8b86d',   // Mustard silk
+          400: '#d4944a',   // Turmeric
+          500: '#b8692e',   // Terracotta
+          600: '#9c4f28',   // Deep clay
+          700: '#7d3a26',   // Rich brown
+          800: '#653024',   // Dark earth
+          900: '#542820',   // Deep mahogany
+          950: '#2e1612',   // Charcoal brown
+        },
+        // Additional handloom colors
+        indigo: {
+          50: '#f0f4ff',
+          100: '#e0e9ff',
+          200: '#c7d6fe',
+          300: '#a5b8fc',
+          400: '#8b94f8',
+          500: '#6366f1',   // Traditional indigo
+          600: '#4f46e5',
+          700: '#4338ca',
+          800: '#3730a3',
+          900: '#312e81',
+        },
+        saffron: {
+          50: '#fffbf5',
+          100: '#fff4e6',
+          200: '#ffe4b8',
+          300: '#ffce7a',
+          400: '#ffb347',
+          500: '#ff9500',   // Saffron orange
+          600: '#e6850e',
+          700: '#cc7a00',
+          800: '#996600',
+          900: '#664400',
         },
         // Social media colors for sharing buttons
         facebook: '#1877f2',

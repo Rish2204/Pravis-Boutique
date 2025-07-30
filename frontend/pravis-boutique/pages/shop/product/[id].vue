@@ -707,7 +707,7 @@ const route = useRoute()
 const productId = route.params.id
 
 // Setup composables and stores
-const { getProduct, getRelatedProducts, submitReview } = useProducts()
+const { getProduct, getRelatedProducts, submitReview: submitProductReview } = useProducts()
 const cartStore = useCartStore()
 
 // State
@@ -924,7 +924,7 @@ async function submitReview() {
       content: reviewForm.content
     }
     
-    await submitReview(product.value.id, reviewData)
+    await submitProductReview(product.value.id, reviewData)
     
     // In a real app, you'd refresh the reviews here
     // For demo purposes, we'll just add it to the UI
