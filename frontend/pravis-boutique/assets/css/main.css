@@ -39,11 +39,19 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
-  background: var(--background-white);
+  background: var(--background-primary);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   min-height: 100vh;
+}
+
+/* Textured background pattern */
+.maroon-pattern {
+  background-color: var(--pravis-primary);
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 175, 55, .05) 35px, rgba(212, 175, 55, .05) 70px),
+    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(212, 175, 55, .05) 35px, rgba(212, 175, 55, .05) 70px);
 }
 
 h1, h2, h3, h4, h5, h6 {
