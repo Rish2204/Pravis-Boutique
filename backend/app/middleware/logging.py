@@ -27,11 +27,12 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         # Start timer
         start_time = time.time()
         
-        # Log request details
-        logger.info(
-            f"Request started: {request.method} {request.url.path} "
-            f"(ID: {request_id})"
-        )
+        # Log request details (skip for common endpoints that return 200)
+        if not (request.url.path in ["/", "/api/v1/health/"] and request.method == "GET"):
+            logger.info(
+                f"Request started: {request.method} {request.url.path} "
+                f"(ID: {request_id})"
+            )
         
         # Process request and get response
         try:
@@ -44,12 +45,14 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
             response.headers["X-Request-ID"] = request_id
             response.headers["X-Process-Time"] = str(process_time)
             
-            # Log response details
-            logger.info(
-                f"Request completed: {request.method} {request.url.path} "
-                f"- Status: {response.status_code} - Time: {process_time:.4f}s "
-                f"(ID: {request_id})"
-            )
+            # Log response details (skip 200 OK responses, highlight errors)
+            if response.status_code != 200:
+                log_level = logger.error if response.status_code >= 500 else logger.info
+                log_level(
+                    f"Request completed: {request.method} {request.url.path} "
+                    f"- Status: {response.status_code} - Time: {process_time:.4f}s "
+                    f"(ID: {request_id})"
+                )
             
             return response
         except Exception as e:
