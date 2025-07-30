@@ -11,19 +11,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Handloom Brand Colors - Authentic Indian Textile Palette (Instagram Inspired)
+        // Pravis Brand Colors - Handloom Maroon & Gold Theme
         pravis: {
-          50: '#fdf7f0',   // Cream silk
-          100: '#fbefd6',   // Light cotton
-          200: '#f6d5a7',   // Pale gold
-          300: '#e8b86d',   // Mustard silk
-          400: '#d4944a',   // Turmeric
-          500: '#b8692e',   // Terracotta
-          600: '#9c4f28',   // Deep clay
-          700: '#7d3a26',   // Rich brown
-          800: '#653024',   // Dark earth
-          900: '#542820',   // Deep mahogany
-          950: '#2e1612',   // Charcoal brown
+          50: '#FDF2F8',   // Light rosy background
+          100: '#F8E8EC',  // Very light pink
+          200: '#E8BAC2',  // Light gold-pink accent for hover states
+          300: '#D4AF37',  // Gold accent color
+          400: '#B8860B',  // Dark gold
+          500: '#8B0000',  // Primary maroon color (brand main)
+          600: '#A0001C',  // Slightly brighter maroon for hover/emphasis
+          700: '#7F0000',  // Deep maroon
+          800: '#5F0000',  // Dark maroon for accents
+          900: '#3F0000',  // Very dark maroon
+          950: '#1F0000',  // Almost black maroon
         },
         // Additional handloom colors
         indigo: {
