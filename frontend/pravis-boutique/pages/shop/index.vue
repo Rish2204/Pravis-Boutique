@@ -201,31 +201,16 @@ const products = ref([
 
 // Methods
 const addToCart = (product) => {
-  try {
-    // Create WhatsApp message with product details
-    const phoneNumber = '916300208234' // Remove + for WhatsApp URL
-    const message = `Hi! I'm interested in the following product from Pravis Boutique:\n\n*${product.name}*\nPrice: ₹${product.price}\nFabric: ${product.fabric}\nOrigin: ${product.origin}\n\nPlease provide more details about availability and ordering.`
-    
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(message)
-    
-    // Open WhatsApp in new tab/window
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
-    
-    // Try to open in new window first
-    const newWindow = window.open(whatsappUrl, '_blank')
-    
-    // If popup is blocked, use location redirect
-    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-      window.location.href = whatsappUrl
-    }
-    
-    console.log('Redirecting to WhatsApp for product:', product)
-  } catch (error) {
-    console.error('Error opening WhatsApp:', error)
-    // Fallback to direct navigation
-    window.location.href = `https://wa.me/916300208234?text=Hi! I'm interested in ${product.name} from Pravis Boutique.`
-  }
+  console.log('Add to cart clicked for:', product.name)
+  
+  const phoneNumber = '916300208234'
+  const message = `Hi! I'm interested in ${product.name} from Pravis Boutique. Price: ₹${product.price}`
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  
+  console.log('WhatsApp URL:', whatsappUrl)
+  
+  // Simple direct navigation
+  window.open(whatsappUrl, '_blank')
 }
 </script>
 
