@@ -74,15 +74,9 @@
             <!-- Add to Cart Button -->
             <button 
               @click="addToCart(product)"
-              :disabled="!product.inStock"
-              :class="[
-                'w-full px-4 py-2 text-sm font-medium rounded-md transition-colors',
-                product.inStock 
-                  ? 'bg-pravis-600 hover:bg-pravis-700 text-white' 
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              ]"
+              class="w-full px-4 py-2 text-sm font-medium rounded-md transition-colors bg-pravis-600 hover:bg-pravis-700 text-white"
             >
-              {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
+              Inquire on WhatsApp
             </button>
           </div>
         </div>
@@ -174,7 +168,7 @@ const products = ref([
     origin: "Chanderi, MP",
     rating: 4.7,
     reviews: 78,
-    inStock: false,
+    inStock: true,
     description: "Elegant Chanderi silk dupatta with traditional zari work and floral motifs."
   },
   {
@@ -207,9 +201,31 @@ const products = ref([
 
 // Methods
 const addToCart = (product) => {
-  // Simple alert for now - can be replaced with actual cart functionality later
-  alert(`Added ${product.name} to cart!`)
-  console.log('Added to cart:', product)
+  try {
+    // Create WhatsApp message with product details
+    const phoneNumber = '916300208234' // Remove + for WhatsApp URL
+    const message = `Hi! I'm interested in the following product from Pravis Boutique:\n\n*${product.name}*\nPrice: ₹${product.price}\nFabric: ${product.fabric}\nOrigin: ${product.origin}\n\nPlease provide more details about availability and ordering.`
+    
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message)
+    
+    // Open WhatsApp in new tab/window
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+    
+    // Try to open in new window first
+    const newWindow = window.open(whatsappUrl, '_blank')
+    
+    // If popup is blocked, use location redirect
+    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+      window.location.href = whatsappUrl
+    }
+    
+    console.log('Redirecting to WhatsApp for product:', product)
+  } catch (error) {
+    console.error('Error opening WhatsApp:', error)
+    // Fallback to direct navigation
+    window.location.href = `https://wa.me/916300208234?text=Hi! I'm interested in ${product.name} from Pravis Boutique.`
+  }
 }
 </script>
 

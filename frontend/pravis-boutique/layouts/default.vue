@@ -1,17 +1,22 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-    <!-- Elegant Header -->
-    <header class="bg-pravis-500 text-white shadow-lg relative">
+  <div class="min-h-screen flex flex-col bg-white">
+    <!-- Simple Header for non-home pages -->
+    <header v-if="$route.path !== '/'" class="maroon-pattern text-white shadow-lg relative">
       <div class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
-          <!-- Simplified Logo -->
+          <!-- Pravis Peacock Logo -->
           <NuxtLink to="/" class="flex items-center space-x-3 z-10">
-            <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-md">
-              <span class="text-xl md:text-2xl font-bold text-pravis-500">P</span>
+            <div class="w-12 h-12 md:w-14 md:h-14">
+              <img src="/pravis-peacock-logo.svg" alt="Pravis Logo" class="h-full w-full object-contain drop-shadow-lg" />
             </div>
-            <span class="hidden lg:inline font-display text-2xl ml-2 align-middle tracking-wide">
-              Pravis Handlooms
-            </span>
+            <div class="hidden lg:flex flex-col items-start ml-2">
+              <span class="font-display text-3xl text-gold-500 tracking-wider" style="font-family: 'Playfair Display', serif; font-style: italic;">
+                pravis
+              </span>
+              <span class="text-sm text-pravis-200 tracking-widest -mt-1" style="font-family: 'Georgia', serif; font-style: italic;">
+                Drape in Elegance
+              </span>
+            </div>
           </NuxtLink>
 
           <!-- Streamlined Navigation -->
@@ -95,18 +100,21 @@
             </p>
           </div>
           <div>
-            <h3 class="text-lg font-display font-semibold mb-4">Explore</h3>
+            <h3 class="text-lg font-display font-semibold mb-4">Our Collections</h3>
             <div class="space-y-2">
-              <NuxtLink to="/shop" class="block text-pravis-200 hover:text-pravis-300 transition">Shop Collection</NuxtLink>
-              <NuxtLink to="/contact" class="block text-pravis-200 hover:text-pravis-300 transition">Contact Us</NuxtLink>
+              <NuxtLink to="/shop" class="block text-pravis-200 hover:text-pravis-300 transition">All Products</NuxtLink>
+              <NuxtLink to="/shop?category=sarees" class="block text-pravis-200 hover:text-pravis-300 transition">Sarees: Banaras | Kanchi</NuxtLink>
+              <NuxtLink to="/shop?category=accessories" class="block text-pravis-200 hover:text-pravis-300 transition">Accessories: Jewellery | Clutches</NuxtLink>
+              <NuxtLink to="/shop?category=readymades" class="block text-pravis-200 hover:text-pravis-300 transition">Readymades: Blouses | Kurtis | Suits</NuxtLink>
+              <NuxtLink to="/contact" class="block text-pravis-200 hover:text-pravis-300 transition mt-4">Contact Us</NuxtLink>
             </div>
           </div>
           <div>
             <h3 class="text-lg font-display font-semibold mb-4">Connect</h3>
             <div class="text-pravis-200 space-y-2">
               <p>📧 info@pravishandlooms.com</p>
-              <p>📞 +91 98765 43210</p>
-              <p>📍 Handloom Heritage, India</p>
+              <p>📞 +91 63002 08234</p>
+              <p>📍 2nd Floor, Mokila, 501203</p>
               <a 
                 href="https://www.instagram.com/pravis.handlooms/?hl=en" 
                 target="_blank" 
