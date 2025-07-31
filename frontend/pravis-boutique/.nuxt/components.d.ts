@@ -12,7 +12,8 @@ type HydrationStrategies = {
 }
 type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }>)
 interface _GlobalComponents {
-      'HeroCarousel': typeof import("../components/HeroCarousel.vue")['default']
+      'AnimatedLogo': typeof import("../components/AnimatedLogo.vue")['default']
+    'HeroCarousel': typeof import("../components/HeroCarousel.vue")['default']
     'PushNotificationManager': typeof import("../components/PushNotificationManager.vue")['default']
     'CommonButton': typeof import("../components/common/Button.vue")['default']
     'CommonConsentDialog': typeof import("../components/common/ConsentDialog.vue")['default']
@@ -46,7 +47,8 @@ interface _GlobalComponents {
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
-      'LazyHeroCarousel': LazyComponent<typeof import("../components/HeroCarousel.vue")['default']>
+      'LazyAnimatedLogo': LazyComponent<typeof import("../components/AnimatedLogo.vue")['default']>
+    'LazyHeroCarousel': LazyComponent<typeof import("../components/HeroCarousel.vue")['default']>
     'LazyPushNotificationManager': LazyComponent<typeof import("../components/PushNotificationManager.vue")['default']>
     'LazyCommonButton': LazyComponent<typeof import("../components/common/Button.vue")['default']>
     'LazyCommonConsentDialog': LazyComponent<typeof import("../components/common/ConsentDialog.vue")['default']>
@@ -86,6 +88,7 @@ declare module 'vue' {
   export interface GlobalComponents extends _GlobalComponents { }
 }
 
+export const AnimatedLogo: typeof import("../components/AnimatedLogo.vue")['default']
 export const HeroCarousel: typeof import("../components/HeroCarousel.vue")['default']
 export const PushNotificationManager: typeof import("../components/PushNotificationManager.vue")['default']
 export const CommonButton: typeof import("../components/common/Button.vue")['default']
@@ -120,6 +123,7 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+export const LazyAnimatedLogo: LazyComponent<typeof import("../components/AnimatedLogo.vue")['default']>
 export const LazyHeroCarousel: LazyComponent<typeof import("../components/HeroCarousel.vue")['default']>
 export const LazyPushNotificationManager: LazyComponent<typeof import("../components/PushNotificationManager.vue")['default']>
 export const LazyCommonButton: LazyComponent<typeof import("../components/common/Button.vue")['default']>

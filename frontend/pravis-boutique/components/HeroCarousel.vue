@@ -1,172 +1,107 @@
 <template>
-  <div class="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+  <div class="relative w-full min-h-screen overflow-hidden">
     <!-- Background with texture -->
     <div class="absolute inset-0 bg-gradient-to-br from-pravis-800 via-pravis-700 to-pravis-900"></div>
     
     <!-- Decorative pattern overlay -->
     <div class="absolute inset-0 opacity-10">
-      <div class="w-full h-full" style="background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23D4AF37" fill-opacity="0.3"%3E%3Cpath d="M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z"/%3E%3C/g%3E%3C/svg%3E'); background-size: 40px 40px;"></div>
+      <div class="w-full h-full decorative-pattern"></div>
     </div>
     
-    <!-- Carousel images -->
-    <div class="relative h-full">
-      <transition-group
-        name="carousel"
-        tag="div"
-        class="relative h-full"
-      >
-        <div
-          v-for="(image, index) in images"
-          v-show="currentIndex === index"
-          :key="image.id"
-          class="absolute inset-0 flex items-center justify-center"
-        >
-          <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <!-- Text content -->
-            <div class="text-white text-center md:text-left order-2 md:order-1">
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-display mb-4" style="font-family: 'Playfair Display', serif; font-style: italic;">
-                <span class="text-gold-500">pravis</span>
+    <!-- Main content centered -->
+    <div class="relative h-full flex flex-col items-center justify-center text-center py-20">
+      <div class="container mx-auto px-4 max-w-4xl">
+        
+        <!-- Animated Logo and Main Branding -->
+        <div class="mb-12">
+          <!-- Animated Blouse Logo -->
+          <div class="flex items-center justify-center mb-8">
+            <AnimatedLogo />
+            <div class="ml-6">
+              <h1 class="text-6xl md:text-8xl lg:text-9xl font-display text-gold-500 mb-2" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;">
+                pravis
               </h1>
-              <p class="text-2xl md:text-3xl mb-2 text-pravis-200" style="font-family: 'Georgia', serif; font-style: italic;">
+              <p class="text-2xl md:text-3xl text-gold-400 tracking-wider" style="font-family: 'Playfair Display', serif; font-style: italic;">
                 Drape in Elegance
               </p>
-              <p class="text-lg md:text-xl mb-8 text-pravis-100">
-                {{ image.caption }}
-              </p>
-              <div class="text-3xl md:text-4xl font-bold text-gold-500 mb-8">
-                {{ image.price }}
-              </div>
-              <button 
-                class="bg-gold-500 hover:bg-gold-600 text-pravis-900 px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg"
-                @click="$router.push('/shop')"
-              >
-                Shop Collection
-              </button>
-            </div>
-            
-            <!-- Image -->
-            <div class="order-1 md:order-2">
-              <div class="relative">
-                <div class="absolute -inset-4 bg-gold-500 opacity-20 blur-xl rounded-full"></div>
-                <img 
-                  :src="image.src" 
-                  :alt="image.alt"
-                  class="relative w-full max-w-md mx-auto rounded-lg shadow-2xl"
-                />
-              </div>
             </div>
           </div>
         </div>
-      </transition-group>
+
+        <!-- Featured Product Section -->
+        <div class="mb-16">
+          <div class="text-center mb-8">
+            <h2 class="text-4xl md:text-5xl font-display text-gold-500 mb-4" style="font-family: 'Playfair Display', serif;">
+              pravis
+            </h2>
+            <p class="text-xl md:text-2xl text-gold-400 mb-6" style="font-family: 'Playfair Display', serif; font-style: italic;">
+              Drape in Elegance
+            </p>
+            <p class="text-lg md:text-xl text-pravis-100 mb-8">
+              Exquisite Banaras Silk - Handwoven Heritage
+            </p>
+            <div class="text-4xl md:text-5xl font-bold text-gold-500 mb-8">
+              ₹12,500
+            </div>
+            <button 
+              class="bg-gold-500 hover:bg-gold-600 text-pravis-900 px-12 py-4 rounded-full text-xl font-semibold transition-all duration-300 shadow-2xl transform hover:scale-105"
+              @click="$router.push('/shop')"
+            >
+              Shop Collection
+            </button>
+          </div>
+        </div>
+
+        <!-- Collections Section -->
+        <div class="mb-16">
+          <h3 class="text-4xl md:text-5xl font-display text-gold-500 mb-12" style="font-family: 'Playfair Display', serif;">
+            Our Collections
+          </h3>
+          
+          <div class="space-y-6 text-left max-w-2xl mx-auto">
+            <div class="flex items-center text-lg md:text-xl text-pravis-100">
+              <span class="w-4 h-4 bg-gold-500 rounded-full mr-4"></span>
+              <span class="font-semibold text-gold-400">Sarees:</span>
+              <span class="ml-2">Banaras | Kanchi | All Handlooms</span>
+            </div>
+            <div class="flex items-center text-lg md:text-xl text-pravis-100">
+              <span class="w-4 h-4 bg-gold-500 rounded-full mr-4"></span>
+              <span class="font-semibold text-gold-400">Accessories:</span>
+              <span class="ml-2">Jewellery | Clutches</span>
+            </div>
+            <div class="flex items-center text-lg md:text-xl text-pravis-100">
+              <span class="w-4 h-4 bg-gold-500 rounded-full mr-4"></span>
+              <span class="font-semibold text-gold-400">Readymades:</span>
+              <span class="ml-2">Blouses | Co-Ord Sets | Kurtis</span>
+            </div>
+            <div class="flex items-center text-lg md:text-xl text-pravis-100">
+              <span class="w-4 h-4 bg-gold-500 rounded-full mr-4"></span>
+              <span class="font-semibold text-gold-400">Suits</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="bg-gold-500 text-pravis-900 py-8 px-12 rounded-2xl shadow-2xl">
+          <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div class="text-lg md:text-xl font-semibold">
+              2nd Floor, Mokila, 501203.
+            </div>
+            <div class="text-lg md:text-xl font-semibold">
+              Cell: 6300208234
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    
-    <!-- Navigation dots -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
-      <button
-        v-for="(image, index) in images"
-        :key="index"
-        @click="currentIndex = index"
-        class="w-3 h-3 rounded-full transition-all duration-300"
-        :class="currentIndex === index ? 'bg-gold-500 w-8' : 'bg-white opacity-50 hover:opacity-75'"
-      ></button>
-    </div>
-    
-    <!-- Navigation arrows -->
-    <button
-      @click="prev"
-      class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
-    </button>
-    <button
-      @click="next"
-      class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-
-const currentIndex = ref(0)
-let intervalId = null
-
-// Product images with captions and prices
-const images = ref([
-  {
-    id: 1,
-    src: '/images/product-1.jpg',
-    alt: 'Banaras Silk Saree',
-    caption: 'Exquisite Banaras Silk - Handwoven Heritage',
-    price: '₹12,500'
-  },
-  {
-    id: 2,
-    src: '/images/product-2.jpg',
-    alt: 'Kanchi Cotton Saree',
-    caption: 'Pure Kanchi Cotton - Traditional Elegance',
-    price: '₹8,500'
-  },
-  {
-    id: 3,
-    src: '/images/product-3.jpg',
-    alt: 'Designer Blouse',
-    caption: 'Designer Blouses - Contemporary Style',
-    price: '₹3,500'
-  },
-  {
-    id: 4,
-    src: '/images/product-4.jpg',
-    alt: 'Handloom Kurta Set',
-    caption: 'Handloom Kurta Sets - Modern Comfort',
-    price: '₹5,500'
-  },
-  {
-    id: 5,
-    src: '/images/product-5.jpg',
-    alt: 'Traditional Jewellery',
-    caption: 'Traditional Jewellery - Timeless Beauty',
-    price: '₹15,000'
-  }
-])
-
-const next = () => {
-  currentIndex.value = (currentIndex.value + 1) % images.value.length
-}
-
-const prev = () => {
-  currentIndex.value = currentIndex.value === 0 ? images.value.length - 1 : currentIndex.value - 1
-}
-
-// Auto-rotate carousel
-onMounted(() => {
-  intervalId = setInterval(next, 5000) // Change slide every 5 seconds
-})
-
-onUnmounted(() => {
-  if (intervalId) clearInterval(intervalId)
-})
+// Static hero section - no carousel functionality needed
 </script>
 
 <style scoped>
-.carousel-enter-active,
-.carousel-leave-active {
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-}
-
-.carousel-enter-from {
-  opacity: 0;
-  transform: translateX(100px);
-}
-
-.carousel-leave-to {
-  opacity: 0;
-  transform: translateX(-100px);
-}
+/* Clean, centered layout styles */
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-    <!-- Elegant Header -->
-    <header class="maroon-pattern text-white shadow-lg relative">
+  <div class="min-h-screen flex flex-col bg-white">
+    <!-- Simple Header for non-home pages -->
+    <header v-if="$route.path !== '/'" class="maroon-pattern text-white shadow-lg relative">
       <div class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
           <!-- Pravis Peacock Logo -->
