@@ -1,0 +1,34 @@
+<\!DOCTYPE html>
+<html>
+<head>
+    <title>WhatsApp Test</title>
+</head>
+<body>
+    <h1>WhatsApp Button Test</h1>
+    <button onclick="testWhatsApp()" style="padding: 10px 20px; background: green; color: white; cursor: pointer;">
+        Test WhatsApp Redirect
+    </button>
+    
+    <script>
+    function testWhatsApp() {
+        const phoneNumber = '916300208234';
+        const message = 'Test message from Pravis Boutique';
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        
+        console.log('WhatsApp URL:', whatsappUrl);
+        
+        // Try opening in new window
+        const newWindow = window.open(whatsappUrl, '_blank');
+        
+        if (\!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+            console.log('Popup blocked, using location redirect');
+            window.location.href = whatsappUrl;
+        } else {
+            console.log('Opened in new window');
+        }
+    }
+    </script>
+</body>
+</html>
+EOF < /dev/null
