@@ -196,6 +196,19 @@ const products = ref([
     reviews: 67,
     inStock: true,
     description: "Vibrant Rajasthani block print lehenga with mirror work and traditional patterns."
+  },
+  {
+    id: 7,
+    name: "Elegant Floral Print Cotton Suit Set",
+    price: 4999,
+    originalPrice: 5999,
+    category: "suits",
+    fabric: "Pure Cotton",
+    origin: "Handcrafted",
+    rating: 4.8,
+    reviews: 0,
+    inStock: true,
+    description: "Exquisite white cotton suit set featuring delicate pink floral prints with gold-embellished neckline. Complete 3-piece set includes kurta, matching pants, and coordinating dupatta."
   }
 ])
 
