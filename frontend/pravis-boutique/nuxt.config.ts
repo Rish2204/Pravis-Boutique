@@ -180,4 +180,11 @@ export default defineNuxtConfig({
   
   // Development tools
   devtools: { enabled: true },
+  
+  // Vite configuration for allowing tunnel hosts
+  vite: {
+    server: {
+      allowedHosts: 'all'  // Disable host checking for tunnels
+    }
+  },
 })
