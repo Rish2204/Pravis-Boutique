@@ -10,8 +10,12 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.6 8H19M7 13v4a2 2 0 002 2h8a2 2 0 002-2v-4"/>
           </svg>
         </div>
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Your cart is empty</h2>
-        <p class="text-gray-600 mb-8">Start shopping to add items to your cart</p>
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Shopping Cart</h2>
+        <div class="bg-gold-100 border border-gold-300 rounded-lg p-4 mb-6 max-w-md mx-auto">
+          <p class="text-pravis-700 font-semibold mb-1">🚧 Under Development</p>
+          <p class="text-pravis-600 text-sm">Cart functionality is being built. Use WhatsApp inquiry for now.</p>
+        </div>
+        <p class="text-gray-600 mb-8">For immediate assistance, contact us directly</p>
         
         <div class="space-y-4">
           <NuxtLink 
@@ -21,6 +25,12 @@
             Browse Products
           </NuxtLink>
           <br>
+          <button 
+            @click="openWhatsApp"
+            class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors mr-4"
+          >
+            WhatsApp Us
+          </button>
           <NuxtLink 
             to="/" 
             class="inline-flex items-center text-pravis-600 hover:text-pravis-700 font-medium"
@@ -36,9 +46,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'CartPage'
+<script setup>
+// Page metadata
+useHead({
+  title: 'Shopping Cart - Pravis Boutique',
+  meta: [
+    { name: 'description', content: 'Your shopping cart at Pravis Boutique - handloom textiles and traditional clothing.' }
+  ]
+})
+
+const openWhatsApp = () => {
+  const phoneNumber = '916300208234'
+  const message = 'Hi! I need assistance with shopping at Pravis Boutique.'
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  window.open(whatsappUrl, '_blank')
 }
 </script>
 

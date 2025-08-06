@@ -38,9 +38,8 @@
               <div class="ml-4">
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">Visit Our Store</h3>
                 <p class="text-gray-600 dark:text-gray-300">
-                  123 Handloom Street<br>
-                  Textile District<br>
-                  Mumbai, Maharashtra 400001<br>
+                  2nd Floor, Mokila, 501203<br>
+                  Telangana<br>
                   India
                 </p>
               </div>
@@ -57,7 +56,7 @@
               </div>
               <div class="ml-4">
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">Call Us</h3>
-                <p class="text-gray-600 dark:text-gray-300">+91 98765 43210</p>
+                <p class="text-gray-600 dark:text-gray-300">+91 63002 08234</p>
                 <p class="text-sm text-gray-500 dark:text-gray-400">Mon-Sat 9:00 AM - 6:00 PM IST</p>
               </div>
             </div>
@@ -108,7 +107,13 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send us a Message</h2>
           
-          <form class="space-y-6">
+          <!-- Under Development Alert -->
+          <div class="bg-gold-100 border border-gold-300 rounded-lg p-4 mb-6">
+            <p class="text-pravis-700 font-semibold mb-1">🚧 Under Development</p>
+            <p class="text-pravis-600 text-sm">Contact form is being built. For now, please call or WhatsApp us directly.</p>
+          </div>
+          
+          <form class="space-y-6" @submit.prevent="showAlert">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -164,3 +169,17 @@
     </div>
   </div>
 </template>
+
+<script setup>
+// Page metadata
+useHead({
+  title: 'Contact Us - Pravis Boutique',
+  meta: [
+    { name: 'description', content: 'Get in touch with Pravis Boutique for authentic handloom textiles and traditional clothing.' }
+  ]
+})
+
+const showAlert = () => {
+  alert('Contact form is under development. Please call or WhatsApp us at +91 63002 08234')
+}
+</script>

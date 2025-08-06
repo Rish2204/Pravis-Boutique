@@ -1,61 +1,17 @@
 <template>
   <div class="animated-logo-container">
-    <div class="logo-circle">
-      <!-- P-Peacock Logo SVG matching your exact brand image -->
-      <svg 
-        class="peacock-logo" 
-        viewBox="0 0 120 100" 
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <!-- P-Peacock integrated design -->
-        <g fill="#D4AF37" stroke="none">
-          <!-- Letter P vertical stem -->
-          <rect x="15" y="15" width="8" height="70" rx="2"/>
-          
-          <!-- P upper horizontal section integrated with peacock head -->
-          <path d="M23 15 Q45 10 55 25 Q58 35 50 40 L25 40 Z"/>
-          
-          <!-- Peacock head and beak profile -->
-          <path d="M50 25 Q60 20 65 25 Q68 30 60 35 Q55 32 50 30"/>
-          
-          <!-- Peacock neck flowing from P -->
-          <path d="M50 30 Q65 45 70 60 Q68 65 60 60 Q50 50 45 40"/>
-          
-          <!-- Decorative tail feathers - Traditional Indian motifs -->
-          <!-- Main tail feather 1 -->
-          <path d="M70 45 Q85 40 95 50 Q100 60 90 65 Q80 68 75 60 Q72 55 70 50"/>
-          
-          <!-- Main tail feather 2 -->
-          <path d="M75 60 Q90 65 100 75 Q105 85 95 88 Q85 85 80 78 Q77 70 75 65"/>
-          
-          <!-- Ornamental swirls and flourishes -->
-          <!-- Swirl 1 - upper decorative element -->
-          <path d="M25 20 Q30 15 35 20 Q38 25 35 30 Q30 35 25 30 Q22 25 25 20" fill-opacity="0.8"/>
-          
-          <!-- Swirl 2 - flowing from peacock -->
-          <path d="M60 70 Q70 75 75 85 Q78 90 75 95 Q70 98 65 95 Q60 90 62 85 Q65 80 60 75" fill-opacity="0.8"/>
-          
-          <!-- Leaf motifs on tail -->
-          <ellipse cx="85" cy="55" rx="3" ry="8" transform="rotate(30 85 55)" fill-opacity="0.9"/>
-          <ellipse cx="90" cy="75" rx="2.5" ry="6" transform="rotate(45 90 75)" fill-opacity="0.9"/>
-          <ellipse cx="80" cy="80" rx="2" ry="5" transform="rotate(60 80 80)" fill-opacity="0.9"/>
-          
-          <!-- Additional decorative swirls -->
-          <path d="M35 25 Q40 22 42 28 Q40 32 35 30" fill-opacity="0.7"/>
-          <path d="M32 35 Q38 32 40 38 Q38 42 32 40" fill-opacity="0.7"/>
-          
-          <!-- Fine detail lines in tail -->
-          <path d="M78 50 Q82 52 85 58" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.8"/>
-          <path d="M82 65 Q86 67 88 73" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.8"/>
-          <path d="M85 78 Q88 80 90 85" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.8"/>
-        </g>
-      </svg>
-    </div>
+    <!-- Using the exact P-Peacock logo from brand image -->
+    <img 
+      :src="logoBase64" 
+      alt="Pravis P-Peacock Logo"
+      class="peacock-logo"
+    />
   </div>
 </template>
 
 <script setup>
-// Static P-Peacock logo component
+// Base64 encoded P-Peacock logo - exact match from brand image
+const logoBase64 = 'data:image/png;base64,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'
 </script>
 
 <style scoped>
@@ -65,50 +21,22 @@
   justify-content: center;
 }
 
-.logo-circle {
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
-  border: 4px solid #D4AF37;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-shadow: 
-    0 8px 32px rgba(212, 175, 55, 0.3),
-    inset 0 2px 8px rgba(255, 255, 255, 0.8),
-    0 0 0 8px rgba(212, 175, 55, 0.1);
-}
-
 .peacock-logo {
-  width: 80px;
-  height: 66px;
-  filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .logo-circle {
-    width: 100px;
-    height: 100px;
-  }
-  
   .peacock-logo {
-    width: 66px;
-    height: 55px;
+    width: 100px;
   }
 }
 
 @media (max-width: 480px) {
-  .logo-circle {
-    width: 80px;
-    height: 80px;
-  }
-  
   .peacock-logo {
-    width: 53px;
-    height: 44px;
+    width: 80px;
   }
 }
 </style>
