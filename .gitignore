@@ -28,6 +28,9 @@ __pycache__/
 
 # Logs
 *.log
+frontend.log
+backend_debug.log
+test-whatsapp.html
 
 # OS
 .DS_Store
@@ -43,6 +46,12 @@ node_modules/
 dist/
 build/
 *.egg-info/
+.nuxt/
+.output/
+
+# Nuxt/Vue specific
+.nitro/
+.cache/
 
 # Test coverage
 htmlcov/
