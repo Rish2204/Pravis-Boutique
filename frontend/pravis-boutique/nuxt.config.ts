@@ -3,14 +3,17 @@ export default defineNuxtConfig({
   // Meta information
   app: {
     head: {
-      title: process.env.NUXT_PUBLIC_APP_NAME || 'Pravis Boutique',
+      title: process.env.NUXT_PUBLIC_APP_NAME || 'Pravis Boutique - Premium Handloom Textiles | Drape in Elegance',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: process.env.NUXT_PUBLIC_APP_DESCRIPTION || 'Pravis Boutique E-commerce Platform' },
+        { name: 'description', content: process.env.NUXT_PUBLIC_APP_DESCRIPTION || 'Discover authentic Indian handloom textiles and sarees at Pravis Boutique. Premium quality, traditional craftsmanship, modern designs.' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap' }
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' }

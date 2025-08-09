@@ -11,6 +11,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // New Handloom Color Palette
+        'handloom-rust': '#B7472A',
+        'handloom-terracotta': '#E07A5F',
+        'handloom-cream': '#F4F3EE',
+        'handloom-sage': '#81B29A',
+        'handloom-gold': '#F2CC8F',
+        'handloom-deep': '#3D405B',
+        'maroon': '#800020',
+        'gold': '#FFD700',
+        
         // Pravis Brand Colors - Handloom Maroon & Gold Theme
         pravis: {
           50: '#FDF2F8',   // Light rosy background
@@ -58,6 +68,8 @@ module.exports = {
       },
       fontFamily: {
         // Font families - add your own custom fonts
+        'playfair': ['Playfair Display', 'serif'],
+        'inter': ['Inter', 'sans-serif'],
         sans: [
           'Inter',
           'ui-sans-serif',
