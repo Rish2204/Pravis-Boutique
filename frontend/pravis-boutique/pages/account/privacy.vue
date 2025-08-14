@@ -117,7 +117,8 @@
 <script setup>
 import { ref } from 'vue'
 import PrivacyControls from '@/components/common/PrivacyControls.vue'
-import { useVoiceStore } from '~/store/voice'
+// TODO: Create voice store when voice features are implemented
+// import { useVoiceStore } from '~/store/voice'
 
 // Set page metadata
 useHead({
@@ -128,7 +129,7 @@ useHead({
 })
 
 // Voice privacy settings
-const voiceStore = useVoiceStore()
+// const voiceStore = useVoiceStore() // TODO: Uncomment when voice store is created
 const voiceDataStorage = ref(localStorage.getItem('voice-data-storage') === 'true')
 const voiceTraining = ref(localStorage.getItem('voice-training') === 'true')
 

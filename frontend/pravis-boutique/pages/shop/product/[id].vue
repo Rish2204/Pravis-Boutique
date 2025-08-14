@@ -694,7 +694,8 @@
     </div>
 
     <!-- Voice assistant -->
-    <VoiceAssistant />
+    <!-- TODO: Implement VoiceAssistant component -->
+    <!-- <VoiceAssistant /> -->
 
     <!-- Quick view modal for related products -->
     <div
@@ -742,7 +743,8 @@
 import { ref, reactive, computed, onMounted } from 'vue'
 import ProductCard from '~/components/common/ProductCard.vue'
 import Button from '~/components/common/Button.vue'
-import VoiceAssistant from '~/components/common/VoiceAssistant.vue'
+// TODO: Import VoiceAssistant when component is implemented
+// import VoiceAssistant from '~/components/common/VoiceAssistant.vue'
 import { useProducts } from '~/composables/useProducts'
 import { useCartStore } from '~/store/cart'
 

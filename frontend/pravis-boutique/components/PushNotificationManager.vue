@@ -2,7 +2,7 @@
   <div v-if="isSupported" class="push-notification-manager">
     <div v-if="permissionState === 'default'" class="notification-prompt">
       <p>{{ promptMessage }}</p>
-      <button class="prompt-button" @click="requestPermission">
+      <button class="prompt-button" @click="handlePermissionRequest">
         Enable notifications
       </button>
     </div>
@@ -40,7 +40,7 @@ const handlePermissionRequest = async () => {
     // Here you would typically send the subscription object to your server
     // to store it for future push notification sending
     if (subscription) {
-      console.log('Successfully subscribed to push notifications')
+      // Successfully subscribed to push notifications
       // In a real app, you would do something like:
       // await $fetch('/api/push-subscriptions', {
       //   method: 'POST',

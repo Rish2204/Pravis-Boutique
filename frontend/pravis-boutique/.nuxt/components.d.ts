@@ -17,6 +17,7 @@ interface _GlobalComponents {
     'PushNotificationManager': typeof import("../components/PushNotificationManager.vue")['default']
     'CommonButton': typeof import("../components/common/Button.vue")['default']
     'CommonConsentDialog': typeof import("../components/common/ConsentDialog.vue")['default']
+    'CommonContactUsBox': typeof import("../components/common/ContactUsBox.vue")['default']
     'CommonDarkModeToggle': typeof import("../components/common/DarkModeToggle.vue")['default']
     'CommonPrivacyControls': typeof import("../components/common/PrivacyControls.vue")['default']
     'CommonProductCard': typeof import("../components/common/ProductCard.vue")['default']
@@ -52,6 +53,7 @@ interface _GlobalComponents {
     'LazyPushNotificationManager': LazyComponent<typeof import("../components/PushNotificationManager.vue")['default']>
     'LazyCommonButton': LazyComponent<typeof import("../components/common/Button.vue")['default']>
     'LazyCommonConsentDialog': LazyComponent<typeof import("../components/common/ConsentDialog.vue")['default']>
+    'LazyCommonContactUsBox': LazyComponent<typeof import("../components/common/ContactUsBox.vue")['default']>
     'LazyCommonDarkModeToggle': LazyComponent<typeof import("../components/common/DarkModeToggle.vue")['default']>
     'LazyCommonPrivacyControls': LazyComponent<typeof import("../components/common/PrivacyControls.vue")['default']>
     'LazyCommonProductCard': LazyComponent<typeof import("../components/common/ProductCard.vue")['default']>
@@ -93,6 +95,7 @@ export const HeroCarousel: typeof import("../components/HeroCarousel.vue")['defa
 export const PushNotificationManager: typeof import("../components/PushNotificationManager.vue")['default']
 export const CommonButton: typeof import("../components/common/Button.vue")['default']
 export const CommonConsentDialog: typeof import("../components/common/ConsentDialog.vue")['default']
+export const CommonContactUsBox: typeof import("../components/common/ContactUsBox.vue")['default']
 export const CommonDarkModeToggle: typeof import("../components/common/DarkModeToggle.vue")['default']
 export const CommonPrivacyControls: typeof import("../components/common/PrivacyControls.vue")['default']
 export const CommonProductCard: typeof import("../components/common/ProductCard.vue")['default']
@@ -128,6 +131,7 @@ export const LazyHeroCarousel: LazyComponent<typeof import("../components/HeroCa
 export const LazyPushNotificationManager: LazyComponent<typeof import("../components/PushNotificationManager.vue")['default']>
 export const LazyCommonButton: LazyComponent<typeof import("../components/common/Button.vue")['default']>
 export const LazyCommonConsentDialog: LazyComponent<typeof import("../components/common/ConsentDialog.vue")['default']>
+export const LazyCommonContactUsBox: LazyComponent<typeof import("../components/common/ContactUsBox.vue")['default']>
 export const LazyCommonDarkModeToggle: LazyComponent<typeof import("../components/common/DarkModeToggle.vue")['default']>
 export const LazyCommonPrivacyControls: LazyComponent<typeof import("../components/common/PrivacyControls.vue")['default']>
 export const LazyCommonProductCard: LazyComponent<typeof import("../components/common/ProductCard.vue")['default']>

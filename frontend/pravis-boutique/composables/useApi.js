@@ -1,4 +1,5 @@
-import { ref, useRuntimeConfig } from 'nuxt/app'
+import { ref } from 'vue'
+import { useRuntimeConfig } from 'nuxt/app'
 
 /**
  * Composable for handling API requests

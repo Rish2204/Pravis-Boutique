@@ -69,7 +69,7 @@ export const handleKeyboardNavigation = (event, items, currentIndex) => {
       // Should close the component
       break
 
-    default:
+    default: {
       // Allow searching by first letter
       const char = event.key.toLowerCase()
       if (char.length === 1 && /[a-z0-9]/.test(char)) {
@@ -85,6 +85,7 @@ export const handleKeyboardNavigation = (event, items, currentIndex) => {
         }
       }
       break
+    }
   }
 
   return newIndex
@@ -126,9 +127,8 @@ export const createFocusTrap = (container) => {
       if (event.shiftKey && document.activeElement === firstFocusable) {
         event.preventDefault()
         lastFocusable.focus()
-      }
-      // If tab on last element, move to first element
-      else if (!event.shiftKey && document.activeElement === lastFocusable) {
+      } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+        // If tab on last element, move to first element
         event.preventDefault()
         firstFocusable.focus()
       }
@@ -182,13 +182,11 @@ export const playAudioFeedback = (type) => {
   audio.volume = 0.5 // 50% volume by default
 
   try {
-    audio.play().catch((error) => {
-      // Ignore autoplay restrictions errors
-      console.warn('Audio feedback blocked:', error)
+    audio.play().catch(() => {
+      // Ignore autoplay restrictions errors - silent fallback
     })
   } catch (error) {
-    // Fallback for older browsers
-    console.warn('Audio feedback failed:', error)
+    // Fallback for older browsers - silent fallback
   }
 }
 
@@ -196,6 +194,8 @@ export const playAudioFeedback = (type) => {
  * Creates custom focus outline styles for keyboard navigation
  */
 export const initKeyboardFocusStyles = () => {
+  // Track interaction method for proper focus styling
+  // eslint-disable-next-line no-unused-vars
   let usingMouse = false
 
   // Add class to body when using mouse

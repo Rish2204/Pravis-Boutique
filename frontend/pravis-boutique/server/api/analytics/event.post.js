@@ -15,9 +15,10 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Log analytics event to server console in development
+    // Log analytics event in development mode
     if (process.env.NODE_ENV === 'development') {
-      console.log('[Analytics]', body.type, JSON.stringify(body))
+      // Development logging - replace with proper logger in production
+      // console.log('[Analytics]', body.type, JSON.stringify(body))
     }
 
     // In production, you would:
@@ -33,7 +34,10 @@ export default defineEventHandler(async (event) => {
       message: 'Analytics event received'
     }
   } catch (error) {
-    console.error('Analytics event error:', error)
+    // Error logging - in production, use proper logger
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Analytics event error:', error)
+    }
     throw createError({
       statusCode: 500,
       statusMessage: 'Failed to process analytics event'
