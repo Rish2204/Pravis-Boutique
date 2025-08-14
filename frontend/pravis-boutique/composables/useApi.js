@@ -2,20 +2,20 @@ import { ref, useRuntimeConfig } from 'nuxt/app'
 
 /**
  * Composable for handling API requests
- * 
+ *
  * @returns {Object} API utilities and state
  */
 export const useApi = () => {
   // Get runtime config
   const config = useRuntimeConfig()
-  
+
   // Reactive state
   const loading = ref(false)
   const error = ref(null)
-  
+
   // Base URL from environment
   const baseUrl = config.public.apiBaseUrl + config.public.apiVersion
-  
+
   /**
    * Make a GET request to the API
    *
@@ -26,7 +26,7 @@ export const useApi = () => {
   const get = async (endpoint, options = {}) => {
     loading.value = true
     error.value = null
-    
+
     try {
       const url = `${baseUrl}${endpoint}`
       const response = await fetch(url, {
@@ -37,11 +37,11 @@ export const useApi = () => {
         },
         ...options
       })
-      
+
       if (!response.ok) {
         throw new Error(`API Error: ${response.status} ${response.statusText}`)
       }
-      
+
       const data = await response.json()
       return data
     } catch (err) {
@@ -51,7 +51,7 @@ export const useApi = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Make a POST request to the API
    *
@@ -63,7 +63,7 @@ export const useApi = () => {
   const post = async (endpoint, data, options = {}) => {
     loading.value = true
     error.value = null
-    
+
     try {
       const url = `${baseUrl}${endpoint}`
       const response = await fetch(url, {
@@ -75,11 +75,11 @@ export const useApi = () => {
         body: JSON.stringify(data),
         ...options
       })
-      
+
       if (!response.ok) {
         throw new Error(`API Error: ${response.status} ${response.statusText}`)
       }
-      
+
       return await response.json()
     } catch (err) {
       error.value = err.message || 'An error occurred while posting data'
@@ -88,7 +88,7 @@ export const useApi = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Make a PUT request to the API
    *
@@ -100,7 +100,7 @@ export const useApi = () => {
   const put = async (endpoint, data, options = {}) => {
     loading.value = true
     error.value = null
-    
+
     try {
       const url = `${baseUrl}${endpoint}`
       const response = await fetch(url, {
@@ -112,11 +112,11 @@ export const useApi = () => {
         body: JSON.stringify(data),
         ...options
       })
-      
+
       if (!response.ok) {
         throw new Error(`API Error: ${response.status} ${response.statusText}`)
       }
-      
+
       return await response.json()
     } catch (err) {
       error.value = err.message || 'An error occurred while updating data'
@@ -125,7 +125,7 @@ export const useApi = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Make a DELETE request to the API
    *
@@ -136,7 +136,7 @@ export const useApi = () => {
   const del = async (endpoint, options = {}) => {
     loading.value = true
     error.value = null
-    
+
     try {
       const url = `${baseUrl}${endpoint}`
       const response = await fetch(url, {
@@ -147,11 +147,11 @@ export const useApi = () => {
         },
         ...options
       })
-      
+
       if (!response.ok) {
         throw new Error(`API Error: ${response.status} ${response.statusText}`)
       }
-      
+
       return await response.json()
     } catch (err) {
       error.value = err.message || 'An error occurred while deleting data'
@@ -160,7 +160,7 @@ export const useApi = () => {
       loading.value = false
     }
   }
-  
+
   // Return API utilities and state
   return {
     get,

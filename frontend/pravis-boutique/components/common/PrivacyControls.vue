@@ -1,7 +1,7 @@
 <template>
   <div class="privacy-controls">
     <h3>Your Data & Privacy</h3>
-    
+
     <div class="consent-status">
       <p>
         <strong>Analytics tracking:</strong>
@@ -10,37 +10,37 @@
         </span>
       </p>
     </div>
-    
+
     <div class="privacy-actions">
       <div class="consent-toggle">
         <label class="toggle-switch">
-          <input 
-            type="checkbox" 
-            :checked="hasConsent" 
+          <input
+            type="checkbox"
+            :checked="hasConsent"
             @change="toggleConsent"
-          />
-          <span class="toggle-slider"></span>
+          >
+          <span class="toggle-slider" />
         </label>
         <span class="toggle-label">
           {{ hasConsent ? 'Disable Analytics' : 'Enable Analytics' }}
         </span>
       </div>
-      
-      <button 
-        class="privacy-button export-button" 
+
+      <button
+        class="privacy-button export-button"
         @click="exportUserData"
       >
         Export My Data
       </button>
-      
-      <button 
-        class="privacy-button delete-button" 
+
+      <button
+        class="privacy-button delete-button"
         @click="confirmDataDeletion"
       >
         Delete All My Data
       </button>
     </div>
-    
+
     <!-- Confirmation Dialog -->
     <div v-if="showConfirmDialog" class="confirmation-dialog">
       <div class="dialog-content">
@@ -49,14 +49,14 @@
           Are you sure you want to delete all your data? This action cannot be undone.
         </p>
         <div class="dialog-actions">
-          <button 
-            class="privacy-button cancel-button" 
+          <button
+            class="privacy-button cancel-button"
             @click="showConfirmDialog = false"
           >
             Cancel
           </button>
-          <button 
-            class="privacy-button delete-button" 
+          <button
+            class="privacy-button delete-button"
             @click="deleteUserData"
           >
             Yes, Delete My Data
@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Privacy Policy Summary -->
     <div class="privacy-summary">
       <h4>What We Collect</h4>
@@ -74,59 +74,63 @@
         <li>Voice interactions with "Ask Pravi" assistant</li>
         <li>Basic device information (screen size, browser type)</li>
       </ul>
-      
+
       <h4>How We Use Your Data</h4>
       <p>
-        We use this information to improve our services, personalize your shopping 
+        We use this information to improve our services, personalize your shopping
         experience, and enhance our voice assistant capabilities.
       </p>
-      
+
       <div class="privacy-links">
-        <NuxtLink to="/privacy">Full Privacy Policy</NuxtLink>
-        <NuxtLink to="/terms">Terms of Service</NuxtLink>
+        <NuxtLink to="/privacy">
+          Full Privacy Policy
+        </NuxtLink>
+        <NuxtLink to="/terms">
+          Terms of Service
+        </NuxtLink>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useAnalyticsStore } from '@/store/analytics';
+import { ref, computed } from 'vue'
+import { useAnalyticsStore } from '@/store/analytics'
 
-const analyticsStore = useAnalyticsStore();
-const showConfirmDialog = ref(false);
+const analyticsStore = useAnalyticsStore()
+const showConfirmDialog = ref(false)
 
 // Compute if consent is given
-const hasConsent = computed(() => analyticsStore.hasConsent);
+const hasConsent = computed(() => analyticsStore.hasConsent)
 
 // Toggle consent status
 const toggleConsent = () => {
   // Get the current consent status from localStorage
-  const storedConsent = localStorage.getItem('pravis-consent');
-  
+  const storedConsent = localStorage.getItem('pravis-consent')
+
   if (storedConsent) {
     try {
-      const consentData = JSON.parse(storedConsent);
-      
+      const consentData = JSON.parse(storedConsent)
+
       // Toggle consent
       const newConsentData = {
         ...consentData,
         consent: !consentData.consent,
         timestamp: new Date().toISOString()
-      };
-      
+      }
+
       // Store updated consent
-      localStorage.setItem('pravis-consent', JSON.stringify(newConsentData));
-      
+      localStorage.setItem('pravis-consent', JSON.stringify(newConsentData))
+
       // Update analytics store
-      analyticsStore.setConsent(newConsentData.consent);
-      
+      analyticsStore.setConsent(newConsentData.consent)
+
       // Track consent change if consent is now given
       if (newConsentData.consent) {
-        analyticsStore.trackConsentEvent(newConsentData);
+        analyticsStore.trackConsentEvent(newConsentData)
       }
     } catch (error) {
-      console.error('Error toggling consent:', error);
+      console.error('Error toggling consent:', error)
     }
   } else {
     // No existing consent, create a new one
@@ -134,57 +138,57 @@ const toggleConsent = () => {
       consent: true,
       timestamp: new Date().toISOString(),
       version: '1.0'
-    };
-    
+    }
+
     // Store consent
-    localStorage.setItem('pravis-consent', JSON.stringify(newConsentData));
-    
+    localStorage.setItem('pravis-consent', JSON.stringify(newConsentData))
+
     // Update analytics store
-    analyticsStore.setConsent(true);
-    
+    analyticsStore.setConsent(true)
+
     // Track consent event
-    analyticsStore.trackConsentEvent(newConsentData);
+    analyticsStore.trackConsentEvent(newConsentData)
   }
-};
+}
 
 // Export user data
 const exportUserData = async () => {
-  const userData = await analyticsStore.exportUserData();
-  
+  const userData = await analyticsStore.exportUserData()
+
   if (userData) {
     // Create and download a JSON file with the user data
-    const dataStr = JSON.stringify(userData, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = window.URL.createObjectURL(dataBlob);
-    
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'pravis-data-export.json';
-    a.click();
-    
-    window.URL.revokeObjectURL(url);
+    const dataStr = JSON.stringify(userData, null, 2)
+    const dataBlob = new Blob([dataStr], { type: 'application/json' })
+    const url = window.URL.createObjectURL(dataBlob)
+
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'pravis-data-export.json'
+    a.click()
+
+    window.URL.revokeObjectURL(url)
   } else {
-    alert('Could not export data. Please try again later.');
+    alert('Could not export data. Please try again later.')
   }
-};
+}
 
 // Show confirmation dialog
 const confirmDataDeletion = () => {
-  showConfirmDialog.value = true;
-};
+  showConfirmDialog.value = true
+}
 
 // Delete user data
 const deleteUserData = async () => {
-  const result = await analyticsStore.deleteUserData();
-  
+  const result = await analyticsStore.deleteUserData()
+
   if (result.success) {
-    alert('Your data has been deleted successfully.');
+    alert('Your data has been deleted successfully.')
   } else {
-    alert(`Could not delete data: ${result.error || 'Unknown error'}`);
+    alert(`Could not delete data: ${result.error || 'Unknown error'}`)
   }
-  
-  showConfirmDialog.value = false;
-};
+
+  showConfirmDialog.value = false
+}
 </script>
 
 <style scoped>

@@ -2,7 +2,7 @@
   <div v-if="isSupported" class="push-notification-manager">
     <div v-if="permissionState === 'default'" class="notification-prompt">
       <p>{{ promptMessage }}</p>
-      <button @click="requestPermission" class="prompt-button">
+      <button class="prompt-button" @click="requestPermission">
         Enable notifications
       </button>
     </div>
@@ -31,12 +31,12 @@ const promptMessage = computed(() => {
 // Handle permission request
 const handlePermissionRequest = async () => {
   const result = await requestPermission()
-  
+
   // If permission granted, subscribe to push notifications
   if (result.granted) {
     const { subscribe } = usePushNotifications()
     const subscription = await subscribe(serverPublicKey)
-    
+
     // Here you would typically send the subscription object to your server
     // to store it for future push notification sending
     if (subscription) {

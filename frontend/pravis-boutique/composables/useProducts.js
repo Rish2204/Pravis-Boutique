@@ -4,13 +4,13 @@
 export const useProducts = () => {
   // Get core API utilities
   const { get, post } = useApi()
-  
+
   // State
   const products = ref([])
   const featuredProducts = ref([])
   const loading = ref(false)
   const error = ref(null)
-  
+
   /**
    * Fetch all products
    * @param {Object} options - Query options (category, limit, sort, etc.)
@@ -19,30 +19,30 @@ export const useProducts = () => {
   const getProducts = async (options = {}) => {
     loading.value = true
     error.value = null
-    
+
     try {
       // Build query parameters
       const queryParams = new URLSearchParams()
-      
+
       if (options.category) {
         queryParams.append('category', options.category)
       }
-      
+
       if (options.limit) {
         queryParams.append('limit', options.limit.toString())
       }
-      
+
       if (options.sort) {
         queryParams.append('sort', options.sort)
       }
-      
+
       if (options.page) {
         queryParams.append('page', options.page.toString())
       }
-      
+
       const queryString = queryParams.toString() ? `?${queryParams.toString()}` : ''
       const data = await get(`/products${queryString}`)
-      
+
       products.value = data.products || data || []
       return products.value
     } catch (err) {
@@ -52,7 +52,7 @@ export const useProducts = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Fetch a single product by ID
    * @param {string|number} id - Product ID
@@ -63,10 +63,10 @@ export const useProducts = () => {
       error.value = 'Product ID is required'
       return null
     }
-    
+
     loading.value = true
     error.value = null
-    
+
     try {
       const data = await get(`/products/${id}`)
       return data
@@ -77,7 +77,7 @@ export const useProducts = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Fetch featured products
    * @param {number} limit - Maximum number of products to fetch
@@ -86,7 +86,7 @@ export const useProducts = () => {
   const getFeaturedProducts = async (limit = 6) => {
     loading.value = true
     error.value = null
-    
+
     try {
       const data = await get(`/products/featured?limit=${limit}`)
       featuredProducts.value = data.products || data || []
@@ -98,7 +98,7 @@ export const useProducts = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Search products
    * @param {string} query - Search query
@@ -108,31 +108,31 @@ export const useProducts = () => {
   const searchProducts = async (query, options = {}) => {
     loading.value = true
     error.value = null
-    
+
     try {
       // Build query parameters
       const queryParams = new URLSearchParams()
       queryParams.append('q', query)
-      
+
       if (options.category) {
         queryParams.append('category', options.category)
       }
-      
+
       if (options.limit) {
         queryParams.append('limit', options.limit.toString())
       }
-      
+
       if (options.sort) {
         queryParams.append('sort', options.sort)
       }
-      
+
       if (options.page) {
         queryParams.append('page', options.page.toString())
       }
-      
+
       const queryString = queryParams.toString() ? `?${queryParams.toString()}` : ''
       const data = await get(`/products/search${queryString}`)
-      
+
       return data.products || data || []
     } catch (err) {
       error.value = err.message || 'Failed to search products'
@@ -141,7 +141,7 @@ export const useProducts = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Get product categories
    * @returns {Promise<Array>} - Array of categories
@@ -149,7 +149,7 @@ export const useProducts = () => {
   const getCategories = async () => {
     loading.value = true
     error.value = null
-    
+
     try {
       const data = await get('/products/categories')
       return data.categories || data || []
@@ -160,7 +160,7 @@ export const useProducts = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Get related products
    * @param {string|number} productId - Product ID to find related items for
@@ -170,7 +170,7 @@ export const useProducts = () => {
   const getRelatedProducts = async (productId, limit = 4) => {
     loading.value = true
     error.value = null
-    
+
     try {
       const data = await get(`/products/${productId}/related?limit=${limit}`)
       return data.products || data || []
@@ -181,7 +181,7 @@ export const useProducts = () => {
       loading.value = false
     }
   }
-  
+
   /**
    * Submit a product review
    * @param {string|number} productId - Product ID to review
@@ -191,7 +191,7 @@ export const useProducts = () => {
   const submitReview = async (productId, reviewData) => {
     loading.value = true
     error.value = null
-    
+
     try {
       const data = await post(`/products/${productId}/reviews`, reviewData)
       return data
@@ -202,14 +202,14 @@ export const useProducts = () => {
       loading.value = false
     }
   }
-  
+
   return {
     // State
     products: readonly(products),
     featuredProducts: readonly(featuredProducts),
     loading: readonly(loading),
     error: readonly(error),
-    
+
     // Methods
     getProducts,
     getProduct,

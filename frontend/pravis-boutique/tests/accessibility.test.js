@@ -1,6 +1,6 @@
 /**
  * Accessibility Tests for Pravis Boutique
- * 
+ *
  * This file contains tests for accessibility compliance of core user flows:
  * - Navigation
  * - Search
@@ -36,11 +36,11 @@ describe('Accessibility Tests for Core Components', () => {
           default: 'Click me'
         }
       })
-      
+
       const results = await axe(wrapper.element)
       expect(results).toHaveNoViolations()
     })
-    
+
     it('should be accessible in disabled state', async () => {
       const wrapper = mount(Button, {
         props: {
@@ -52,12 +52,12 @@ describe('Accessibility Tests for Core Components', () => {
           default: 'Cannot click'
         }
       })
-      
+
       const results = await axe(wrapper.element)
       expect(results).toHaveNoViolations()
       expect(wrapper.attributes('aria-disabled')).toBe('true')
     })
-    
+
     it('should be accessible with loading state', async () => {
       const wrapper = mount(Button, {
         props: {
@@ -69,13 +69,13 @@ describe('Accessibility Tests for Core Components', () => {
           default: 'Loading...'
         }
       })
-      
+
       const results = await axe(wrapper.element)
       expect(results).toHaveNoViolations()
       expect(wrapper.attributes('aria-busy')).toBe('true')
     })
   })
-  
+
   // Test ProductCard component
   describe('ProductCard Component', () => {
     const mockProduct = {
@@ -87,7 +87,7 @@ describe('Accessibility Tests for Core Components', () => {
       reviewCount: 42,
       category: 'Test Category'
     }
-    
+
     it('should be accessible with product information', async () => {
       const wrapper = mount(ProductCard, {
         props: {
@@ -95,21 +95,21 @@ describe('Accessibility Tests for Core Components', () => {
         },
         global: {
           stubs: {
-            'NuxtLink': true,
-            'useCartStore': () => ({
+            NuxtLink: true,
+            useCartStore: () => ({
               addItem: () => {}
             }),
-            'useAnalytics': () => ({
+            useAnalytics: () => ({
               trackInteraction: () => {}
             })
           }
         }
       })
-      
+
       const results = await axe(wrapper.element)
       expect(results).toHaveNoViolations()
     })
-    
+
     it('should have proper ARIA attributes', () => {
       const wrapper = mount(ProductCard, {
         props: {
@@ -117,30 +117,30 @@ describe('Accessibility Tests for Core Components', () => {
         },
         global: {
           stubs: {
-            'NuxtLink': true,
-            'useCartStore': () => ({
+            NuxtLink: true,
+            useCartStore: () => ({
               addItem: () => {}
             }),
-            'useAnalytics': () => ({
+            useAnalytics: () => ({
               trackInteraction: () => {}
             })
           }
         }
       })
-      
+
       // Check product article role
       expect(wrapper.attributes('role')).toBe('article')
-      
+
       // Check product heading is properly labeled
       expect(wrapper.find(`#product-name-${mockProduct.id}`).exists()).toBe(true)
-      
+
       // Check rating is properly labeled
       const ratingElement = wrapper.find('[aria-label*="Rated"]')
       expect(ratingElement.exists()).toBe(true)
       expect(ratingElement.attributes('role')).toBe('img')
     })
   })
-  
+
   // Test Voice Assistant
   describe('Voice Assistant Component', () => {
     it('should have appropriate ARIA attributes for the panel', async () => {
@@ -150,7 +150,7 @@ describe('Accessibility Tests for Core Components', () => {
         },
         global: {
           stubs: {
-            'useVoiceStore': () => ({
+            useVoiceStore: () => ({
               isListening: ref(false),
               transcript: ref(''),
               isMuted: ref(false),
@@ -160,57 +160,57 @@ describe('Accessibility Tests for Core Components', () => {
               processCommand: () => Promise.resolve({ text: 'Test response' }),
               setMuted: () => {}
             }),
-            'useAnalyticsStore': () => ({
+            useAnalyticsStore: () => ({
               hasConsent: true
             })
           }
         }
       })
-      
+
       // Check dialog role
       const dialog = wrapper.find('[role="dialog"]')
       expect(dialog.exists()).toBe(true)
       expect(dialog.attributes('aria-modal')).toBe('true')
       expect(dialog.attributes('aria-labelledby')).toBeDefined()
-      
+
       // Check conversation log
       const conversationLog = wrapper.find('[role="log"]')
       expect(conversationLog.exists()).toBe(true)
       expect(conversationLog.attributes('aria-live')).toBe('polite')
     })
   })
-  
+
   // Test Consent Dialog
   describe('Consent Dialog Component', () => {
     it('should have proper ARIA attributes for accessibility', async () => {
       const wrapper = shallowMount(ConsentDialog, {
         global: {
           stubs: {
-            'useAnalyticsStore': () => ({
+            useAnalyticsStore: () => ({
               setConsent: () => {},
               trackConsentEvent: () => {}
             })
           }
         }
       })
-      
+
       // Force dialog to show
       await wrapper.setData({ showDialog: true })
-      
+
       // Check dialog role
       const dialog = wrapper.find('[role="dialog"]')
       expect(dialog.exists()).toBe(true)
       expect(dialog.attributes('aria-modal')).toBe('true')
       expect(dialog.attributes('aria-labelledby')).toBeDefined()
-      
+
       // Check radiogroup role
       const radioGroup = wrapper.find('[role="radiogroup"]')
       expect(radioGroup.exists()).toBe(true)
       expect(radioGroup.attributes('aria-labelledby')).toBeDefined()
-      
+
       // Check radio options have proper descriptions
       const radioOptions = wrapper.findAll('input[type="radio"]')
-      radioOptions.forEach(option => {
+      radioOptions.forEach((option) => {
         expect(option.attributes('aria-describedby')).toBeDefined()
       })
     })
@@ -222,17 +222,17 @@ describe('Keyboard Navigation Tests', () => {
   it('should be able to navigate through product cards with keyboard', async () => {
     // This would need to be an e2e test with a tool like Cypress or Playwright
     // Mocking keyboard navigation here
-    
+
     // Example with Cypress:
     // cy.get('[role="article"]').first().focus()
     // cy.focused().should('have.attr', 'role', 'article')
     // cy.focused().type('{enter}')
     // cy.url().should('include', '/shop/product/')
   })
-  
+
   it('should trap focus within voice assistant panel when open', async () => {
     // This would need to be an e2e test with a tool like Cypress or Playwright
-    
+
     // Example with Cypress:
     // cy.get('[aria-controls="voice-assistant-panel"]').click()
     // cy.get('#voice-assistant-panel').should('be.visible')
@@ -247,7 +247,7 @@ describe('Screen Reader Announcement Tests', () => {
   it('should announce product actions to screen readers', async () => {
     // This requires manual testing with actual screen readers like VoiceOver, NVDA, or JAWS
     // Mock test for demonstration
-    
+
     // Example assertion for the presence of ARIA live regions:
     // const wrapper = mount(App)
     // expect(wrapper.find('#aria-live-announcer').exists()).toBe(true)
@@ -268,31 +268,31 @@ describe('Core Flow Accessibility Tests', () => {
     it('should have accessible navigation menu', async () => {
       // Test navigation menu accessibility
     })
-    
+
     it('should allow keyboard navigation through menu items', async () => {
       // Test keyboard navigation in menu
     })
   })
-  
+
   describe('Search Flow', () => {
     it('should have accessible search input', async () => {
       // Test search input accessibility
     })
-    
+
     it('should announce search results to screen readers', async () => {
       // Test search results announcements
     })
   })
-  
+
   describe('Checkout Flow', () => {
     it('should have accessible form inputs', async () => {
       // Test checkout form accessibility
     })
-    
+
     it('should provide clear error messages for invalid inputs', async () => {
       // Test error message accessibility
     })
-    
+
     it('should announce order confirmation to screen readers', async () => {
       // Test order confirmation announcements
     })

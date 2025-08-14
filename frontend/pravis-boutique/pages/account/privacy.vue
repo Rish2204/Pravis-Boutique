@@ -4,77 +4,81 @@
       <h1 class="text-3xl font-bold mb-8 text-gray-800 dark:text-white">
         Privacy Settings
       </h1>
-      
+
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">
           Data & Privacy Controls
         </h2>
-        
+
         <div class="mb-8">
           <p class="text-gray-700 dark:text-gray-300 mb-4">
             Manage how your data is collected and used while shopping at Pravis Boutique.
             You can change these settings at any time.
           </p>
         </div>
-        
+
         <!-- Privacy Controls Component -->
         <PrivacyControls />
       </div>
-      
+
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
         <h2 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">
           Voice Assistant Privacy
         </h2>
-        
+
         <div class="mb-6">
           <p class="text-gray-700 dark:text-gray-300 mb-4">
             Our "Ask Pravi" voice assistant helps you shop and find products with voice commands.
             Control how your voice data is processed below.
           </p>
         </div>
-        
+
         <div class="space-y-6">
           <!-- Voice Data Storage -->
           <div class="flex items-center justify-between">
             <div>
-              <h3 class="text-lg font-medium text-gray-800 dark:text-white">Voice Data Storage</h3>
+              <h3 class="text-lg font-medium text-gray-800 dark:text-white">
+                Voice Data Storage
+              </h3>
               <p class="text-sm text-gray-600 dark:text-gray-400">
                 Store voice transcripts to improve voice recognition
               </p>
             </div>
             <label class="toggle-switch">
-              <input 
-                type="checkbox" 
+              <input
                 v-model="voiceDataStorage"
+                type="checkbox"
                 @change="updateVoiceSettings"
-              />
-              <span class="toggle-slider"></span>
+              >
+              <span class="toggle-slider" />
             </label>
           </div>
-          
+
           <!-- Voice Recognition Training -->
           <div class="flex items-center justify-between">
             <div>
-              <h3 class="text-lg font-medium text-gray-800 dark:text-white">Voice Recognition Training</h3>
+              <h3 class="text-lg font-medium text-gray-800 dark:text-white">
+                Voice Recognition Training
+              </h3>
               <p class="text-sm text-gray-600 dark:text-gray-400">
                 Help improve our voice recognition with your voice data
               </p>
             </div>
             <label class="toggle-switch">
-              <input 
-                type="checkbox" 
+              <input
                 v-model="voiceTraining"
+                type="checkbox"
                 @change="updateVoiceSettings"
-              />
-              <span class="toggle-slider"></span>
+              >
+              <span class="toggle-slider" />
             </label>
           </div>
-          
+
           <!-- Clear Voice History -->
           <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <button 
-              @click="clearVoiceHistory"
+            <button
               class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+              @click="clearVoiceHistory"
             >
               Clear Voice History
             </button>
@@ -84,19 +88,19 @@
           </div>
         </div>
       </div>
-      
+
       <div class="mt-8 flex justify-between">
-        <button 
-          @click="goBack"
+        <button
           class="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600"
+          @click="goBack"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
           </svg>
           Back to Account
         </button>
-        
-        <NuxtLink 
+
+        <NuxtLink
           to="/privacy"
           class="inline-flex items-center px-4 py-2 bg-pravis-100 dark:bg-pravis-900 text-pravis-800 dark:text-pravis-100 rounded-md hover:bg-pravis-200 dark:hover:bg-pravis-800"
         >
@@ -111,9 +115,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import PrivacyControls from '@/components/common/PrivacyControls.vue';
-import { useVoiceStore } from '~/store/voice';
+import { ref } from 'vue'
+import PrivacyControls from '@/components/common/PrivacyControls.vue'
+import { useVoiceStore } from '~/store/voice'
 
 // Set page metadata
 useHead({
@@ -121,24 +125,24 @@ useHead({
   meta: [
     { name: 'description', content: 'Manage your privacy settings and data preferences' }
   ]
-});
+})
 
 // Voice privacy settings
-const voiceStore = useVoiceStore();
-const voiceDataStorage = ref(localStorage.getItem('voice-data-storage') === 'true');
-const voiceTraining = ref(localStorage.getItem('voice-training') === 'true');
+const voiceStore = useVoiceStore()
+const voiceDataStorage = ref(localStorage.getItem('voice-data-storage') === 'true')
+const voiceTraining = ref(localStorage.getItem('voice-training') === 'true')
 
 // Update voice settings
 const updateVoiceSettings = () => {
-  localStorage.setItem('voice-data-storage', voiceDataStorage.value);
-  localStorage.setItem('voice-training', voiceTraining.value);
-  
+  localStorage.setItem('voice-data-storage', voiceDataStorage.value)
+  localStorage.setItem('voice-training', voiceTraining.value)
+
   // Update any voice store settings if needed
   // voiceStore.updatePrivacySettings({
   //   dataStorage: voiceDataStorage.value,
   //   trainingEnabled: voiceTraining.value
   // });
-};
+}
 
 // Clear voice history
 const clearVoiceHistory = async () => {
@@ -153,20 +157,20 @@ const clearVoiceHistory = async () => {
         body: JSON.stringify({
           // Include any necessary identification info
         })
-      });
-      
-      alert('Voice history has been cleared successfully.');
+      })
+
+      alert('Voice history has been cleared successfully.')
     } catch (error) {
-      console.error('Error clearing voice history:', error);
-      alert('An error occurred while clearing your voice history. Please try again.');
+      console.error('Error clearing voice history:', error)
+      alert('An error occurred while clearing your voice history. Please try again.')
     }
   }
-};
+}
 
 // Go back function
 const goBack = () => {
-  navigateTo('/account');
-};
+  navigateTo('/account')
+}
 </script>
 
 <style scoped>

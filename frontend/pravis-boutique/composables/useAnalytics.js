@@ -19,13 +19,12 @@ const analyticsStore = reactive({
 })
 
 export const useAnalytics = () => {
-  
   // Initialize session
   const initializeSession = () => {
     if (!analyticsStore.sessionId) {
       analyticsStore.sessionId = generateSessionId()
       analyticsStore.userId = getUserId()
-      
+
       // Track session start
       logEvent('session_start', {
         timestamp: new Date().toISOString(),
@@ -48,8 +47,8 @@ export const useAnalytics = () => {
   // Get or create user ID
   const getUserId = () => {
     const existing = localStorage.getItem('pravis_user_id')
-    if (existing) return existing
-    
+    if (existing) { return existing }
+
     const newUserId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
     localStorage.setItem('pravis_user_id', newUserId)
     return newUserId
@@ -69,15 +68,15 @@ export const useAnalytics = () => {
       device: getDeviceInfo(),
       browser: getBrowserInfo()
     }
-    
+
     analyticsStore.events.push(event)
-    
+
     // Save to local storage for persistence
     saveToLocalStorage('events', event)
-    
+
     // Send to backend if available
     sendToBackend('events', event)
-    
+
     console.log('📊 Analytics Event:', eventName, data)
   }
 
@@ -94,11 +93,11 @@ export const useAnalytics = () => {
       loadTime: performance.now(),
       viewport: `${window.innerWidth}x${window.innerHeight}`
     }
-    
+
     analyticsStore.pageViews.push(pageView)
     saveToLocalStorage('pageViews', pageView)
     sendToBackend('pageViews', pageView)
-    
+
     console.log('👁️ Page View:', path)
   }
 
@@ -116,11 +115,11 @@ export const useAnalytics = () => {
       mousePosition: details.mousePosition || null,
       elementPosition: details.elementPosition || null
     }
-    
+
     analyticsStore.userInteractions.push(interaction)
     saveToLocalStorage('interactions', interaction)
     sendToBackend('interactions', interaction)
-    
+
     console.log('🖱️ User Interaction:', element, action, details)
   }
 
@@ -137,11 +136,11 @@ export const useAnalytics = () => {
       context,
       userAgent: navigator.userAgent
     }
-    
+
     analyticsStore.errors.push(errorLog)
     saveToLocalStorage('errors', errorLog)
     sendToBackend('errors', errorLog)
-    
+
     console.error('🚨 Error Logged:', error)
   }
 
@@ -156,11 +155,11 @@ export const useAnalytics = () => {
       path: window.location.pathname,
       details
     }
-    
+
     analyticsStore.performance.push(perfLog)
     saveToLocalStorage('performance', perfLog)
     sendToBackend('performance', perfLog)
-    
+
     console.log('⚡ Performance:', metric, value)
   }
 
@@ -173,10 +172,10 @@ export const useAnalytics = () => {
       timestamp: new Date().toISOString(),
       path: window.location.pathname
     }
-    
+
     analyticsStore.cookies.set(name, cookieData)
     saveToLocalStorage('cookies', { [name]: cookieData })
-    
+
     console.log('🍪 Cookie Tracked:', name, value)
   }
 
@@ -190,10 +189,10 @@ export const useAnalytics = () => {
       path: window.location.pathname,
       size: JSON.stringify(data).length
     }
-    
+
     analyticsStore.cache.set(key, cacheData)
     saveToLocalStorage('cache', { [key]: cacheData })
-    
+
     console.log('💾 Cache Tracked:', key, type)
   }
 
@@ -253,12 +252,12 @@ export const useAnalytics = () => {
     try {
       const existing = JSON.parse(localStorage.getItem(`pravis_analytics_${type}`) || '[]')
       existing.push(data)
-      
+
       // Keep only last 1000 entries to prevent storage overflow
       if (existing.length > 1000) {
         existing.splice(0, existing.length - 1000)
       }
-      
+
       localStorage.setItem(`pravis_analytics_${type}`, JSON.stringify(existing))
     } catch (error) {
       console.warn('Failed to save to localStorage:', error)
@@ -303,7 +302,7 @@ export const useAnalytics = () => {
         performance: JSON.parse(localStorage.getItem('pravis_analytics_performance') || '[]')
       }
     }
-    
+
     // Create downloadable JSON file
     const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
@@ -314,7 +313,7 @@ export const useAnalytics = () => {
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-    
+
     return allData
   }
 
@@ -327,11 +326,11 @@ export const useAnalytics = () => {
     analyticsStore.performance.length = 0
     analyticsStore.cache.clear()
     analyticsStore.cookies.clear()
-    
+
     // Clear localStorage
     const keys = ['events', 'pageViews', 'interactions', 'errors', 'performance', 'cookies', 'cache']
     keys.forEach(key => localStorage.removeItem(`pravis_analytics_${key}`))
-    
+
     console.log('🗑️ Analytics data cleared')
   }
 
@@ -346,7 +345,7 @@ export const useAnalytics = () => {
     performanceCount: analyticsStore.performance.length,
     cookiesCount: analyticsStore.cookies.size,
     cacheCount: analyticsStore.cache.size,
-    sessionDuration: analyticsStore.events.length > 0 
+    sessionDuration: analyticsStore.events.length > 0
       ? new Date() - new Date(analyticsStore.events[0].timestamp)
       : 0
   }))
@@ -359,23 +358,23 @@ export const useAnalytics = () => {
     logInteraction,
     logError,
     logPerformance,
-    
+
     // Cookie and cache
     trackCookie,
     trackCache,
-    
+
     // E-commerce specific
     trackProduct,
     trackCart,
     trackCheckout,
-    
+
     // Data management
     exportAnalyticsData,
     clearAnalyticsData,
-    
+
     // Computed properties
     getAnalyticsSummary,
-    
+
     // Raw data access
     analyticsStore: readonly(analyticsStore)
   }

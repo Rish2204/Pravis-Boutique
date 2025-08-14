@@ -1,6 +1,6 @@
 /**
  * Accessibility Plugin for Pravis Boutique
- * 
+ *
  * This plugin initializes accessibility features when the app loads on the client side.
  * It sets up keyboard focus styles, creates an ARIA live region for announcements,
  * and initializes any required global accessibility handlers.
@@ -18,7 +18,7 @@ export default defineNuxtPlugin({
       window.addEventListener('DOMContentLoaded', () => {
         // Initialize keyboard focus styles
         initKeyboardFocusStyles()
-        
+
         // Create global ARIA live region for announcements
         const ariaLive = document.createElement('div')
         ariaLive.id = 'aria-live-announcer'
@@ -34,14 +34,14 @@ export default defineNuxtPlugin({
         ariaAlert.setAttribute('aria-live', 'assertive')
         ariaAlert.setAttribute('aria-atomic', 'true')
         document.body.appendChild(ariaAlert)
-        
+
         // Add skip to main content link at the beginning of the body
         const skipLink = document.createElement('a')
         skipLink.href = '#main-content'
         skipLink.className = 'skip-to-content'
         skipLink.textContent = 'Skip to main content'
         document.body.insertBefore(skipLink, document.body.firstChild)
-        
+
         // Add CSS for skip link
         const style = document.createElement('style')
         style.textContent = `
@@ -65,7 +65,7 @@ export default defineNuxtPlugin({
           }
         `
         document.head.appendChild(style)
-        
+
         // Listen for route changes to announce page navigation
         nuxtApp.$router.afterEach((to) => {
           const pageTitle = document.title || to.meta.title || to.name || 'Page'
@@ -77,7 +77,7 @@ export default defineNuxtPlugin({
           }, 100)
         })
       })
-      
+
       // Log that accessibility features are initialized
       console.info('✓ Accessibility features initialized')
     }

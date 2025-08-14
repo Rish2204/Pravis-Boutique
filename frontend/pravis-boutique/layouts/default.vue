@@ -2,16 +2,20 @@
   <div>
     <!-- Consistent Header across all pages -->
     <header class="pravis-header">
-      <div class="header-pattern"></div>
+      <div class="header-pattern" />
       <div class="header-content">
         <div class="logo-section">
           <AnimatedLogo />
         </div>
         <div class="brand-text">
-          <h1 class="brand-name">pravis</h1>
-          <p class="brand-tagline">Drape in Elegance</p>
+          <h1 class="brand-name">
+            pravis
+          </h1>
+          <p class="brand-tagline">
+            Drape in Elegance
+          </p>
         </div>
-        <div class="sparkle-accent"></div>
+        <div class="sparkle-accent" />
       </div>
     </header>
 
@@ -122,19 +126,19 @@ import AnimatedLogo from '~/components/AnimatedLogo.vue'
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .brand-text {
     text-align: center;
   }
-  
+
   .brand-name {
     font-size: 3.5rem;
   }
-  
+
   .brand-tagline {
     font-size: 1.2rem;
   }
-  
+
   .sparkle-accent {
     display: none;
   }
@@ -144,7 +148,7 @@ import AnimatedLogo from '~/components/AnimatedLogo.vue'
   .brand-name {
     font-size: 2.5rem;
   }
-  
+
   .brand-tagline {
     font-size: 1rem;
   }

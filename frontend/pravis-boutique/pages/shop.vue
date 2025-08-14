@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  mounted() {
+  mounted () {
     // Redirect to simple shop page
     this.$router.replace('/shop/simple')
   }

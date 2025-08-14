@@ -1,11 +1,9 @@
 <template>
-<div class="min-h-screen">
-  <!-- Hero Section matching the brand image -->
-  <HeroCarousel />
-  <ContactUsBox class="mt-6" />
-</div>
-
-
+  <div class="min-h-screen">
+    <!-- Hero Section matching the brand image -->
+    <HeroCarousel />
+    <ContactUsBox class="mt-6" />
+  </div>
 </template>
 
 <script>

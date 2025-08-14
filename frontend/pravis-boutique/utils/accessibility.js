@@ -10,7 +10,7 @@
 export const announceToScreenReader = (message, priority = 'polite') => {
   // Use existing aria-live region if available, or create a new one
   let announcer = document.getElementById('aria-live-announcer')
-  
+
   if (!announcer) {
     announcer = document.createElement('div')
     announcer.id = 'aria-live-announcer'
@@ -22,7 +22,7 @@ export const announceToScreenReader = (message, priority = 'polite') => {
 
   // Set the priority (politeness level)
   announcer.setAttribute('aria-live', priority)
-  
+
   // Update the content after a small delay to ensure announcement
   setTimeout(() => {
     announcer.textContent = message
@@ -38,37 +38,37 @@ export const announceToScreenReader = (message, priority = 'polite') => {
  */
 export const handleKeyboardNavigation = (event, items, currentIndex) => {
   let newIndex = currentIndex
-  
+
   switch (event.key) {
     case 'ArrowDown':
       event.preventDefault()
       newIndex = (currentIndex + 1) % items.length
       break
-      
+
     case 'ArrowUp':
       event.preventDefault()
       newIndex = (currentIndex - 1 + items.length) % items.length
       break
-      
+
     case 'Home':
       event.preventDefault()
       newIndex = 0
       break
-      
+
     case 'End':
       event.preventDefault()
       newIndex = items.length - 1
       break
-      
+
     case 'Enter':
     case ' ':
       // Handled by the calling component
       break
-      
+
     case 'Escape':
       // Should close the component
       break
-      
+
     default:
       // Allow searching by first letter
       const char = event.key.toLowerCase()
@@ -86,7 +86,7 @@ export const handleKeyboardNavigation = (event, items, currentIndex) => {
       }
       break
   }
-  
+
   return newIndex
 }
 
@@ -100,26 +100,26 @@ export const createFocusTrap = (container) => {
   let firstFocusable = null
   let lastFocusable = null
   let previouslyFocused = null
-  
+
   const initialize = () => {
     previouslyFocused = document.activeElement
-    
+
     // Get all focusable elements
     focusableElements = Array.from(
       container.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       )
     ).filter(el => !el.disabled && !el.getAttribute('aria-hidden'))
-    
+
     firstFocusable = focusableElements[0]
     lastFocusable = focusableElements[focusableElements.length - 1]
-    
+
     // Focus first element
     if (firstFocusable) {
       setTimeout(() => firstFocusable.focus(), 50)
     }
   }
-  
+
   const handleKeydown = (event) => {
     if (event.key === 'Tab') {
       // If shift + tab on first element, move to last element
@@ -134,12 +134,12 @@ export const createFocusTrap = (container) => {
       }
     }
   }
-  
+
   const activate = () => {
     initialize()
     container.addEventListener('keydown', handleKeydown)
   }
-  
+
   const deactivate = () => {
     container.removeEventListener('keydown', handleKeydown)
     // Restore focus to element that had it before trap was activated
@@ -147,7 +147,7 @@ export const createFocusTrap = (container) => {
       setTimeout(() => previouslyFocused.focus(), 0)
     }
   }
-  
+
   return {
     activate,
     deactivate
@@ -164,7 +164,7 @@ export const playAudioFeedback = (type) => {
   if (audioPreferences && JSON.parse(audioPreferences).disabled) {
     return
   }
-  
+
   // Map of audio files to feedback types
   const audioMap = {
     success: '/audio/success.mp3',
@@ -174,15 +174,15 @@ export const playAudioFeedback = (type) => {
     addToCart: '/audio/add-to-cart.mp3',
     notification: '/audio/notification.mp3'
   }
-  
+
   const audioSrc = audioMap[type] || audioMap.click
-  
+
   // Create and play the audio
   const audio = new Audio(audioSrc)
   audio.volume = 0.5 // 50% volume by default
-  
+
   try {
-    audio.play().catch(error => {
+    audio.play().catch((error) => {
       // Ignore autoplay restrictions errors
       console.warn('Audio feedback blocked:', error)
     })
@@ -197,13 +197,13 @@ export const playAudioFeedback = (type) => {
  */
 export const initKeyboardFocusStyles = () => {
   let usingMouse = false
-  
+
   // Add class to body when using mouse
   document.body.addEventListener('mousedown', () => {
     usingMouse = true
     document.body.classList.add('using-mouse')
   })
-  
+
   // Remove class when using keyboard
   document.body.addEventListener('keydown', (event) => {
     if (event.key === 'Tab') {
@@ -211,7 +211,7 @@ export const initKeyboardFocusStyles = () => {
       document.body.classList.remove('using-mouse')
     }
   })
-  
+
   // Add stylesheet for keyboard focus styles
   const style = document.createElement('style')
   style.textContent = `

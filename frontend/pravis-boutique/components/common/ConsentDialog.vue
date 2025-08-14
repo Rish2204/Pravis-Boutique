@@ -1,14 +1,16 @@
 <template>
   <div v-if="showDialog" class="consent-overlay" role="dialog" aria-modal="true" aria-labelledby="consent-dialog-title">
-    <div class="consent-dialog" tabindex="-1" ref="dialogRef">
+    <div ref="dialogRef" class="consent-dialog" tabindex="-1">
       <div class="boutique-logo">
-        <h2 id="consent-dialog-title">Welcome to Pravis Boutique!</h2>
+        <h2 id="consent-dialog-title">
+          Welcome to Pravis Boutique!
+        </h2>
       </div>
-      
+
       <div class="disclaimer-content">
         <p>
-          <strong>A Friendly Disclaimer:</strong> This App comes with an AI Agent 
-          called <em>"Ask Pravi"</em>. This agent collects data and feedback for 
+          <strong>A Friendly Disclaimer:</strong> This App comes with an AI Agent
+          called <em>"Ask Pravi"</em>. This agent collects data and feedback for
           training purposes. Should you choose to accept.
         </p>
       </div>
@@ -16,28 +18,28 @@
       <div class="consent-options" role="radiogroup" aria-labelledby="consent-dialog-title">
         <label class="consent-option">
           <input
+            v-model="selectedOption"
             type="radio"
             name="consent"
             value="accept"
-            v-model="selectedOption"
             aria-describedby="accept-description"
             @keydown.space.prevent="selectedOption = 'accept'"
-          />
-          <span class="checkmark" aria-hidden="true"></span>
+          >
+          <span class="checkmark" aria-hidden="true" />
           <span>Sure, Why not!</span>
           <span id="accept-description" class="sr-only">Accept data collection and AI voice assistant training</span>
         </label>
 
         <label class="consent-option">
           <input
+            v-model="selectedOption"
             type="radio"
             name="consent"
             value="decline"
-            v-model="selectedOption"
             aria-describedby="decline-description"
             @keydown.space.prevent="selectedOption = 'decline'"
-          />
-          <span class="checkmark" aria-hidden="true"></span>
+          >
+          <span class="checkmark" aria-hidden="true" />
           <span>Maybe, Not right now!</span>
           <span id="decline-description" class="sr-only">Decline data collection and AI voice assistant training</span>
         </label>
@@ -45,16 +47,16 @@
 
       <button
         class="continue-button"
-        @click="handleConsentSubmit"
         :disabled="!selectedOption"
         aria-label="Continue with selected preference"
+        @click="handleConsentSubmit"
       >
         Continue
       </button>
 
       <div class="privacy-note">
         <small>
-          You can change your preference anytime in Settings. 
+          You can change your preference anytime in Settings.
           <NuxtLink to="/privacy" target="_blank">Privacy Policy</NuxtLink>
         </small>
       </div>
@@ -63,86 +65,86 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
-import { useAnalyticsStore } from '@/store/analytics';
-import { createFocusTrap, playAudioFeedback } from '~/utils/accessibility';
+import { ref, onMounted, nextTick } from 'vue'
+import { useAnalyticsStore } from '@/store/analytics'
+import { createFocusTrap, playAudioFeedback } from '~/utils/accessibility'
 
-const emit = defineEmits(['consentDecision']);
+const emit = defineEmits(['consentDecision'])
 
-const showDialog = ref(false);
-const selectedOption = ref(null);
-const dialogRef = ref(null);
-const focusTrap = ref(null);
-const analyticsStore = useAnalyticsStore();
+const showDialog = ref(false)
+const selectedOption = ref(null)
+const dialogRef = ref(null)
+const focusTrap = ref(null)
+const analyticsStore = useAnalyticsStore()
 
 onMounted(() => {
   // Check if user has already made a consent decision
-  const existingConsent = localStorage.getItem('pravis-consent');
+  const existingConsent = localStorage.getItem('pravis-consent')
   if (!existingConsent) {
-    showDialog.value = true;
-    
+    showDialog.value = true
+
     // Setup focus trap once dialog is visible
     nextTick(() => {
       if (dialogRef.value) {
-        focusTrap.value = createFocusTrap(dialogRef.value);
-        focusTrap.value.activate();
+        focusTrap.value = createFocusTrap(dialogRef.value)
+        focusTrap.value.activate()
       }
-    });
+    })
   }
-  
+
   // Add keyboard event listener for Escape key
   const handleKeydown = (event) => {
     if (event.key === 'Escape' && showDialog.value) {
       // Default to declining on escape
-      selectedOption.value = 'decline';
-      handleConsentSubmit();
+      selectedOption.value = 'decline'
+      handleConsentSubmit()
     }
-  };
-  
-  window.addEventListener('keydown', handleKeydown);
-  
+  }
+
+  window.addEventListener('keydown', handleKeydown)
+
   // Clean up event listener
   return () => {
-    window.removeEventListener('keydown', handleKeydown);
+    window.removeEventListener('keydown', handleKeydown)
     if (focusTrap.value) {
-      focusTrap.value.deactivate();
+      focusTrap.value.deactivate()
     }
-  };
-});
+  }
+})
 
 const handleConsentSubmit = () => {
   if (selectedOption.value) {
     // Play audio feedback
-    playAudioFeedback(selectedOption.value === 'accept' ? 'success' : 'click');
-    
+    playAudioFeedback(selectedOption.value === 'accept' ? 'success' : 'click')
+
     const consentData = {
       consent: selectedOption.value === 'accept',
       timestamp: new Date().toISOString(),
       version: '1.0'
-    };
-    
+    }
+
     // Store consent in localStorage
-    localStorage.setItem('pravis-consent', JSON.stringify(consentData));
-    
+    localStorage.setItem('pravis-consent', JSON.stringify(consentData))
+
     // Update analytics store
-    analyticsStore.setConsent(consentData.consent);
-    
+    analyticsStore.setConsent(consentData.consent)
+
     // Track consent decision if consent was given
     if (consentData.consent) {
-      analyticsStore.trackConsentEvent(consentData);
+      analyticsStore.trackConsentEvent(consentData)
     }
-    
+
     // Deactivate focus trap before closing
     if (focusTrap.value) {
-      focusTrap.value.deactivate();
+      focusTrap.value.deactivate()
     }
-    
+
     // Emit event to parent component
-    emit('consentDecision', consentData);
-    
-    showDialog.value = false;
+    emit('consentDecision', consentData)
+
+    showDialog.value = false
   }
-};
+}
 </script>
 
 <style scoped>

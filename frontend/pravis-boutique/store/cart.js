@@ -10,18 +10,18 @@ export const useCartStore = defineStore('cart', {
     error: null,
     checkoutStatus: null
   }),
-  
+
   getters: {
     /**
      * Get total number of items in cart
      */
-    count: (state) => state.items.reduce((total, item) => total + item.quantity, 0),
-    
+    count: state => state.items.reduce((total, item) => total + item.quantity, 0),
+
     /**
      * Get all items in cart
      */
-    cartItems: (state) => state.items,
-    
+    cartItems: state => state.items,
+
     /**
      * Calculate cart subtotal
      */
@@ -30,7 +30,7 @@ export const useCartStore = defineStore('cart', {
         return total + (item.price * item.quantity)
       }, 0)
     },
-    
+
     /**
      * Calculate estimated tax amount
      * Using a simple 8% tax rate for demonstration
@@ -38,29 +38,29 @@ export const useCartStore = defineStore('cart', {
     taxAmount: (state, getters) => {
       return getters.subtotal * 0.08
     },
-    
+
     /**
      * Calculate grand total
      */
     total: (state, getters) => {
       return getters.subtotal + getters.taxAmount
     },
-    
+
     /**
      * Check if cart is empty
      */
-    isEmpty: (state) => state.items.length === 0
+    isEmpty: state => state.items.length === 0
   },
-  
+
   actions: {
     /**
      * Add item to cart
      * @param {Object} product - Product to add to cart
      * @param {number} quantity - Quantity to add
      */
-    addItem(product, quantity = 1) {
+    addItem (product, quantity = 1) {
       const existingItem = this.items.find(item => item.id === product.id)
-      
+
       if (existingItem) {
         // Increase quantity if product already in cart
         existingItem.quantity += quantity
@@ -74,77 +74,77 @@ export const useCartStore = defineStore('cart', {
           quantity
         })
       }
-      
+
       // Persist cart to localStorage
       this.saveCart()
-      
+
       return true
     },
-    
+
     /**
      * Update item quantity
      * @param {string|number} productId - Product ID to update
      * @param {number} quantity - New quantity
      */
-    updateQuantity(productId, quantity) {
+    updateQuantity (productId, quantity) {
       const item = this.items.find(item => item.id === productId)
-      
+
       if (item) {
         if (quantity <= 0) {
           // Remove item if quantity is zero or negative
           return this.removeItem(productId)
         }
-        
+
         item.quantity = quantity
         this.saveCart()
         return true
       }
-      
+
       return false
     },
-    
+
     /**
      * Remove item from cart
      * @param {string|number} productId - Product ID to remove
      */
-    removeItem(productId) {
+    removeItem (productId) {
       const index = this.items.findIndex(item => item.id === productId)
-      
+
       if (index !== -1) {
         this.items.splice(index, 1)
         this.saveCart()
         return true
       }
-      
+
       return false
     },
-    
+
     /**
      * Clear all items from cart
      */
-    clearCart() {
+    clearCart () {
       this.items = []
       this.checkoutStatus = null
-      
+
       // Clear cart in localStorage
       if (process.client) {
         localStorage.removeItem('cart-items')
       }
     },
-    
+
     /**
      * Save cart to localStorage
      */
-    saveCart() {
+    saveCart () {
       if (process.client) {
         localStorage.setItem('cart-items', JSON.stringify(this.items))
       }
     },
-    
+
     /**
      * Load cart from localStorage
      */
-    loadCart() {
+    loadCart () {
       if (process.client) {
         const savedCart = localStorage.getItem('cart-items')
         if (savedCart) {
@@ -156,20 +156,20 @@ export const useCartStore = defineStore('cart', {
         }
       }
     },
-    
+
     /**
      * Process cart checkout
      * @param {Object} checkoutData - Checkout information (shipping, payment, etc)
      */
-    async checkout(checkoutData) {
+    async checkout (checkoutData) {
       this.loading = true
       this.checkoutStatus = 'processing'
       this.error = null
-      
+
       try {
         const { useApi } = useNuxtApp()
         const { post } = useApi()
-        
+
         // Prepare order data
         const orderData = {
           items: this.items,
@@ -178,10 +178,10 @@ export const useCartStore = defineStore('cart', {
           total: this.total,
           ...checkoutData
         }
-        
+
         // Submit order to API
         const response = await post('/orders', orderData)
-        
+
         if (response.success) {
           this.checkoutStatus = 'success'
           this.clearCart()

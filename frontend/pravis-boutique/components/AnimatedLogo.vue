@@ -1,11 +1,11 @@
 <template>
   <div class="animated-logo-container">
     <!-- Using the exact P-Peacock logo from brand image -->
-    <img 
-      :src="logoBase64" 
+    <img
+      :src="logoBase64"
       alt="Pravis P-Peacock Logo"
       class="peacock-logo"
-    />
+    >
   </div>
 </template>
 

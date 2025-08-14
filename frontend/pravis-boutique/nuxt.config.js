@@ -193,7 +193,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  
+
   // Image optimization
   image: {
     provider: 'ipx',
@@ -208,12 +208,12 @@ export default defineNuxtConfig({
       xxl: 1536
     }
   },
-  
+
   // Performance optimizations
   performance: {
-    resourceHints: true,
+    resourceHints: true
   },
-  
+
   // Color mode for accessibility
   colorMode: {
     classSuffix: '',
@@ -263,7 +263,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  
+
   // Accessibility configurations
   a11y: {
     // Enable dev-time a11y audits

@@ -16,9 +16,15 @@
           </svg>
         </div>
         <div>
-          <h3 class="text-lg font-medium text-gray-900 dark:text-white">Phone</h3>
-          <p class="text-gray-600 dark:text-gray-300">+91 63002 08234</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Mon–Sat 9:00 AM – 6:00 PM IST</p>
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+            Phone
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            +91 63002 08234
+          </p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Mon–Sat 9:00 AM – 6:00 PM IST
+          </p>
         </div>
       </div>
       <!-- Email Information -->
@@ -29,9 +35,15 @@
           </svg>
         </div>
         <div>
-          <h3 class="text-lg font-medium text-gray-900 dark:text-white">Email</h3>
-          <p class="text-gray-600 dark:text-gray-300">info@pravishandlooms.com</p>
-          <p class="text-gray-600 dark:text-gray-300">orders@pravishandlooms.com</p>
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+            Email
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            info@pravishandlooms.com
+          </p>
+          <p class="text-gray-600 dark:text-gray-300">
+            orders@pravishandlooms.com
+          </p>
         </div>
       </div>
     </div>
@@ -46,8 +58,8 @@
 
 <script>
 export default {
-  name: 'ContactUsBox',
-};
+  name: 'ContactUsBox'
+}
 </script>
 
 <style scoped>
