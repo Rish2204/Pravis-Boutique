@@ -9,6 +9,28 @@ type UserAppConfig = Defu<{}, []>
 
 declare module "nitropack/types" {
   interface AppConfig extends UserAppConfig {}
+  interface NitroRuntimeConfig {
+   public: {
+      apiBaseUrl: string,
 
+      apiVersion: string,
+
+      appName: string,
+
+      appDescription: string,
+
+      appVersion: string,
+
+      contactEmail: string,
+
+      enableVoiceAgent: boolean,
+
+      enableAnalytics: boolean,
+
+      authEnabled: boolean,
+   },
+
+   apiSecret: string,
+  }
 }
 export {}

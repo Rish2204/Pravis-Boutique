@@ -1,18 +1,16 @@
 
-import { _replaceAppConfig } from '#app/config'
-import { defuFn } from 'defu'
+import { updateAppConfig } from '#app'
+import { defuFn } from '/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/defu/dist/defu.mjs'
 
-const inlineConfig = {
-  "nuxt": {}
-}
+const inlineConfig = {}
 
 // Vite - webpack is handled directly in #app/config
 if (import.meta.hot) {
   import.meta.hot.accept((newModule) => {
-    _replaceAppConfig(newModule.default)
+    updateAppConfig(newModule.default)
   })
 }
 
 
 
-export default /*@__PURE__*/ defuFn(inlineConfig)
+export default /* #__PURE__ */ defuFn(inlineConfig)
