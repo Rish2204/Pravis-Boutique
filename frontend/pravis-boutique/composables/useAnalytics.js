@@ -3,7 +3,7 @@
  * Tracks user interactions, cookies, cache, and navigation for testing
  */
 
-import { ref, reactive, computed } from 'vue'
+import { reactive, computed } from 'vue'
 
 // Global analytics store
 const analyticsStore = reactive({

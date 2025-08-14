@@ -740,7 +740,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import ProductCard from '~/components/common/ProductCard.vue'
 import Button from '~/components/common/Button.vue'
 // TODO: Import VoiceAssistant when component is implemented
@@ -1026,7 +1026,7 @@ function handleAddToCart (product) {
 }
 
 function handleWishlistToggle (data) {
-  const { product, inWishlist } = data
+  const { inWishlist } = data
   alert(`${inWishlist ? 'Added to' : 'Removed from'} wishlist!`)
 }
 

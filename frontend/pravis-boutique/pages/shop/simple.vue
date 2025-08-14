@@ -282,7 +282,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useProductData } from '~/composables/useProductData'
 import { useCartStore } from '~/store/cart'
 
@@ -300,7 +300,6 @@ const {
   getCategories,
   getFilters,
   searchProducts,
-  filterProducts,
   formatPrice
 } = useProductData()
 

@@ -20,10 +20,10 @@
             Phone
           </h3>
           <p class="text-gray-600 dark:text-gray-300">
-            +91 63002 08234
+            +91 63002 08234
           </p>
           <p class="text-sm text-gray-500 dark:text-gray-400">
-            Mon–Sat 9:00 AM – 6:00 PM IST
+            Mon-Sat 9:00 AM - 6:00 PM IST
           </p>
         </div>
       </div>

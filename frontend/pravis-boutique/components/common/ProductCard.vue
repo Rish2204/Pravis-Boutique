@@ -165,7 +165,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useCartStore } from '~/store/cart'
 import { announceToScreenReader, playAudioFeedback } from '~/utils/accessibility'
 
