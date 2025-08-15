@@ -108,8 +108,8 @@
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send us a Message</h2>
           
           <!-- Under Development Alert -->
-          <div class="bg-gold-100 border border-gold-300 rounded-lg p-4 mb-6">
-            <p class="text-pravis-700 font-semibold mb-1">🚧 Under Development</p>
+          <div class="bg-pravis-100 border border-pravis-300 rounded-lg p-4 mb-6">
+            <p class="text-pravis-700 font-semibold mb-1 font-display">🚧 Under Development</p>
             <p class="text-pravis-600 text-sm">Contact form is being built. For now, please call or WhatsApp us directly.</p>
           </div>
           
@@ -160,12 +160,12 @@
 
     <!-- Back to Home -->
     <div class="text-center pb-12">
-      <nuxt-link to="/" class="inline-flex items-center text-pravis-600 hover:text-pravis-700 font-medium">
+      <button @click="goBack" class="inline-flex items-center text-pravis-600 hover:text-pravis-700 font-medium transition-colors">
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        Back to Home
-      </nuxt-link>
+        Back to Previous Page
+      </button>
     </div>
   </div>
 </template>
@@ -181,5 +181,9 @@ useHead({
 
 const showAlert = () => {
   alert('Contact form is under development. Please call or WhatsApp us at +91 63002 08234')
+}
+
+const goBack = () => {
+  window.history.back()
 }
 </script>

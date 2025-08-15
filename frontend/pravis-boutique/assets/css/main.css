@@ -15,6 +15,14 @@
   --pravis-accent: #D4AF37;     /* Warm gold accent */
   --pravis-dark-gold: #B8860B;  /* Dark gold for hover */
   
+  /* Unified Handloom Colors - using pravis brand colors */
+  --handloom-rust: var(--pravis-secondary);    /* Use pravis secondary instead */
+  --handloom-terracotta: #E07A5F;              /* Keep for accent */
+  --handloom-cream: var(--pravis-light);       /* Use pravis light */
+  --handloom-sage: var(--pravis-accent);       /* Use pravis gold */
+  --handloom-gold: var(--pravis-accent);       /* Use pravis gold */
+  --handloom-deep: var(--pravis-dark);         /* Use pravis dark */
+  
   /* Background Colors */
   --background-primary: #ffffff;
   --background-secondary: #FDF2F8; /* Very light maroon tint */
@@ -31,6 +39,10 @@
   --border-light: #E5E7EB;
   --border-maroon: #8B0000;
   --border-accent: #D4AF37;
+  
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', serif;
 }
 
 * {
@@ -38,7 +50,7 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-primary);
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--background-primary);
@@ -63,7 +75,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.3;
 }
@@ -150,42 +162,45 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.primary-btn {
-  background: linear-gradient(135deg, var(--pravis-maroon) 0%, var(--pravis-vibrant) 100%);
+.primary-btn, .btn-primary {
+  background: linear-gradient(135deg, var(--pravis-primary) 0%, var(--pravis-secondary) 100%);
   color: white;
-}
-
-.primary-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.primary-btn:hover::before {
-  left: 100%;
-}
-
-.primary-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 
-    0 12px 30px rgba(139, 0, 0, 0.4),
-    0 0 20px rgba(212, 175, 55, 0.3);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .secondary-btn {
   background: white;
-  color: var(--pravis-maroon);
+  color: var(--pravis-primary);
+  border: 2px solid var(--pravis-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-btn:hover, .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 20px rgba(139, 0, 0, 0.3),
+    0 0 15px rgba(212, 175, 55, 0.2);
 }
 
 .secondary-btn:hover {
-  background: var(--background-light);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(139, 0, 0, 0.2);
+  background: var(--pravis-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
 }
 
 /* Handloom Card styles */
