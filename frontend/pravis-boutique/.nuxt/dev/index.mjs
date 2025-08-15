@@ -1,43 +1,43 @@
 import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { tmpdir } from 'node:os';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send as send$1, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, createError, getQuery as getQuery$1, readBody, getResponseStatus, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, getRouterParam, getResponseStatusText } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send as send$1, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, createError, getQuery as getQuery$1, readBody, getResponseStatus, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, getRouterParam, getResponseStatusText } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { escapeHtml } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/@vue/shared/dist/shared.cjs.js';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, joinRelativeURL } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/vue/server-renderer/index.mjs';
-import destr, { destr as destr$1 } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/destr/dist/index.mjs';
-import { createHooks } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/hookable/dist/index.mjs';
-import { createFetch, Headers as Headers$1 } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/ofetch/dist/node.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/node-mock-http/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/unstorage/drivers/fs.mjs';
-import { digest } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/ohash/dist/index.mjs';
-import { klona } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/scule/dist/index.mjs';
-import { getContext } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/unctx/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/radix3/dist/index.mjs';
+import { escapeHtml } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/@vue/shared/dist/shared.cjs.js';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, joinRelativeURL } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/vue/server-renderer/index.mjs';
+import destr, { destr as destr$1 } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/destr/dist/index.mjs';
+import { createHooks } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/hookable/dist/index.mjs';
+import { createFetch, Headers as Headers$1 } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/ofetch/dist/node.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/node-mock-http/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/unstorage/drivers/fs.mjs';
+import { digest } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/ohash/dist/index.mjs';
+import { klona } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/scule/dist/index.mjs';
+import { getContext } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/unctx/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/youch-core/build/index.js';
-import { Youch } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/nitropack/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/source-map/source-map.js';
+import consola, { consola as consola$1 } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/youch-core/build/index.js';
+import { Youch } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/nitropack/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/source-map/source-map.js';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { stringify, uneval } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/devalue/index.js';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/errx/dist/index.js';
-import { isVNode, toValue, isRef } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/vue/index.mjs';
+import { stringify, uneval } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/devalue/index.js';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/errx/dist/index.js';
+import { isVNode, toValue, isRef } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/vue/index.mjs';
 import { promises } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname as dirname$1, resolve as resolve$1, isAbsolute } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/pathe/dist/index.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/unhead/dist/server.mjs';
-import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/unhead/dist/plugins.mjs';
-import { walkResolver } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/unhead/dist/utils.mjs';
-import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/node_modules/ipx/dist/index.mjs';
+import { dirname as dirname$1, resolve as resolve$1, isAbsolute } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/pathe/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/unhead/dist/server.mjs';
+import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/unhead/dist/plugins.mjs';
+import { walkResolver } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/unhead/dist/utils.mjs';
+import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/node_modules/ipx/dist/index.mjs';
 
-const serverAssets = [{"baseName":"server","dir":"/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/server/assets"}];
 
 const assets$1 = createStorage();
 
@@ -49,11 +49,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets$1);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique","watchOptions":{"ignored":[null]}}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/server","watchOptions":{"ignored":[null]}}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/.nuxt"}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/.nuxt/cache"}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/.data/kv"}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique","watchOptions":{"ignored":[null]}}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/server","watchOptions":{"ignored":[null]}}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/.nuxt"}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/.nuxt/cache"}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -660,7 +660,7 @@ const _inlineRuntimeConfig = {
     "alias": {},
     "fs": {
       "dir": [
-        "/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/public"
+        "/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/public"
       ]
     },
     "http": {
@@ -1036,13 +1036,13 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _QkWs_TN6ChOPr7Hu8hm8IHBIHmNbPbVDIyuaUAjrkmI = (function(nitro) {
+const _tzASSW_If9bNpx__qYu5DFzHQLDEYVNcBTNnypCnFY0 = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script$1}<\/script>`);
   });
 });
 
-const rootDir = "/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique";
+const rootDir = "/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique";
 
 const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"Experience fashion with our AI voice agent Ask Pravi. Discover, shop, and get personalized recommendations."},{"name":"keywords","content":"boutique, fashion, AI, voice agent, shopping, Hyderabad"},{"property":"og:title","content":"Pravis Boutique - AI-Powered Fashion"},{"property":"og:description","content":"Experience fashion with our AI voice agent Ask Pravi"},{"property":"og:image","content":"/og-image.jpg"},{"name":"twitter:card","content":"summary_large_image"},{"name":"theme-color","content":"#8B0000"},{"name":"color-scheme","content":"light dark"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"href":"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap","rel":"stylesheet"},{"rel":"preload","as":"font","type":"font/woff2","href":"/fonts/playfair-display-v30-latin-regular.woff2","crossorigin":""},{"rel":"preload","as":"font","type":"font/woff2","href":"/fonts/inter-v12-latin-regular.woff2","crossorigin":""},{"rel":"preload","as":"image","href":"/images/hero-banner.webp"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"en"},"title":"Pravis Boutique - AI-Powered Fashion"};
 
@@ -1061,7 +1061,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _LGInhyBSJWWTjryaMTVZu4sucsMx8Sywh3OE91ezgKk = (nitroApp) => {
+const _r8yYoy7_HgnzcUyEP2Es0AXf3hyrAQ5l4nm8YNkbaIM = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -1132,16 +1132,16 @@ function onConsoleLog(callback) {
 
 const script = "\"use strict\";(()=>{const t=window,e=document.documentElement,c=[\"dark\",\"light\"],n=getStorageValue(\"localStorage\",\"nuxt-color-mode\")||\"system\";let i=n===\"system\"?u():n;const r=e.getAttribute(\"data-color-mode-forced\");r&&(i=r),l(i),t[\"__NUXT_COLOR_MODE__\"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.add(s):e.className+=\" \"+s,a&&e.setAttribute(\"data-\"+a,o)}function d(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,\"g\"),\"\"),a&&e.removeAttribute(\"data-\"+a)}function f(o){return t.matchMedia(\"(prefers-color-scheme\"+o+\")\")}function u(){if(t.matchMedia&&f(\"\").media!==\"not all\"){for(const o of c)if(f(\":\"+o).matches)return o}return\"light\"}})();function getStorageValue(t,e){switch(t){case\"localStorage\":return window.localStorage.getItem(e);case\"sessionStorage\":return window.sessionStorage.getItem(e);case\"cookie\":return getCookie(e);default:return null}}function getCookie(t){const c=(\"; \"+window.document.cookie).split(\"; \"+t+\"=\");if(c.length===2)return c.pop()?.split(\";\").shift()}";
 
-const _xcJeRTsGMR7asWAXIlhTQaHJ7gjS3i4HGJvWny2VjCw = (function(nitro) {
+const _a8rMTYLknCPtHOwDO25Iyry432XhLnqEhb0ZeEbj4Jo = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
 const plugins = [
-  _QkWs_TN6ChOPr7Hu8hm8IHBIHmNbPbVDIyuaUAjrkmI,
-_LGInhyBSJWWTjryaMTVZu4sucsMx8Sywh3OE91ezgKk,
-_xcJeRTsGMR7asWAXIlhTQaHJ7gjS3i4HGJvWny2VjCw
+  _tzASSW_If9bNpx__qYu5DFzHQLDEYVNcBTNnypCnFY0,
+_r8yYoy7_HgnzcUyEP2Es0AXf3hyrAQ5l4nm8YNkbaIM,
+_a8rMTYLknCPtHOwDO25Iyry432XhLnqEhb0ZeEbj4Jo
 ];
 
 const assets = {};
@@ -1169,7 +1169,7 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _fxNlIH = eventHandler((event) => {
+const _wbLWoe = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
@@ -1304,8 +1304,8 @@ function publicAssetsURL(...path) {
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
-const getServerEntry = () => import('file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
-const getClientManifest = () => import('file:///Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file:///home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
   if (!manifest) {
@@ -1627,7 +1627,7 @@ async function runTask(name, {
   }
 }
 
-const _K4Fl99 = lazyEventHandler(() => {
+const _ReMUYK = lazyEventHandler(() => {
   const opts = useRuntimeConfig().ipx || {};
   const fsDir = opts?.fs?.dir ? (Array.isArray(opts.fs.dir) ? opts.fs.dir : [opts.fs.dir]).map((dir) => isAbsolute(dir) ? dir : fileURLToPath(new URL(dir, globalThis._importMeta_.url))) : void 0;
   const fsStorage = opts.fs?.dir ? ipxFSStorage({ ...opts.fs, dir: fsDir }) : void 0;
@@ -1645,24 +1645,24 @@ const _K4Fl99 = lazyEventHandler(() => {
   return useBase(opts.baseURL, ipxHandler);
 });
 
-const _lazy_IVLIPc = () => Promise.resolve().then(function () { return event_post$1; });
-const _lazy_uR15kT = () => Promise.resolve().then(function () { return send; });
-const _lazy_gWJ8xn = () => Promise.resolve().then(function () { return index; });
-const _lazy_qlreys = () => Promise.resolve().then(function () { return deleteData_delete$1; });
-const _lazy_mW45bl = () => Promise.resolve().then(function () { return exportData_post$1; });
-const _lazy_LvXQcg = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_yl85A0 = () => Promise.resolve().then(function () { return event_post$1; });
+const _lazy_gaX7wP = () => Promise.resolve().then(function () { return send; });
+const _lazy_M3Uxya = () => Promise.resolve().then(function () { return index; });
+const _lazy_y9Ndff = () => Promise.resolve().then(function () { return deleteData_delete$1; });
+const _lazy_6PnPsU = () => Promise.resolve().then(function () { return exportData_post$1; });
+const _lazy_T9EoxT = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '', handler: _fxNlIH, lazy: false, middleware: true, method: undefined },
-  { route: '/api/analytics/event', handler: _lazy_IVLIPc, lazy: true, middleware: false, method: "post" },
-  { route: '/api/push-notifications/send', handler: _lazy_uR15kT, lazy: true, middleware: false, method: undefined },
-  { route: '/api/push-subscriptions', handler: _lazy_gWJ8xn, lazy: true, middleware: false, method: undefined },
-  { route: '/api/user/delete-data', handler: _lazy_qlreys, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/user/export-data', handler: _lazy_mW45bl, lazy: true, middleware: false, method: "post" },
-  { route: '/__nuxt_error', handler: _lazy_LvXQcg, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _wbLWoe, lazy: false, middleware: true, method: undefined },
+  { route: '/api/analytics/event', handler: _lazy_yl85A0, lazy: true, middleware: false, method: "post" },
+  { route: '/api/push-notifications/send', handler: _lazy_gaX7wP, lazy: true, middleware: false, method: undefined },
+  { route: '/api/push-subscriptions', handler: _lazy_M3Uxya, lazy: true, middleware: false, method: undefined },
+  { route: '/api/user/delete-data', handler: _lazy_y9Ndff, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/user/export-data', handler: _lazy_6PnPsU, lazy: true, middleware: false, method: "post" },
+  { route: '/__nuxt_error', handler: _lazy_T9EoxT, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/_ipx/**', handler: _K4Fl99, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_LvXQcg, lazy: true, middleware: false, method: undefined }
+  { route: '/_ipx/**', handler: _ReMUYK, lazy: false, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_T9EoxT, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
