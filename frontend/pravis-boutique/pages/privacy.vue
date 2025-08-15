@@ -130,10 +130,10 @@
         
         <div class="mt-8 pt-8 border-t text-center">
           <button
-            class="btn-primary px-6 py-3"
+            class="btn-primary px-6 py-3 bg-pravis-600 hover:bg-pravis-700 text-white font-semibold rounded-lg transition-colors"
             @click="goBack"
           >
-            ← Back to Boutique
+            ← Back to Previous Page
           </button>
         </div>
       </div>
@@ -172,7 +172,7 @@ export default {
   },
   methods: {
     goBack () {
-      this.$router.go(-1)
+      window.history.back()
     }
   }
 }

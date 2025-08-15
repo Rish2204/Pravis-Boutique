@@ -1,5 +1,5 @@
 <template>
-  <footer id="contact" class="bg-handloom-deep text-white py-16">
+  <footer id="contact" class="bg-pravis-900 text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-4 gap-8 mb-12">
         <!-- Brand -->
@@ -9,19 +9,19 @@
               <svg viewBox="0 0 100 100" class="w-full h-full">
                 <defs>
                   <linearGradient id="footerLogo" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#F2CC8F" />
-                    <stop offset="100%" style="stop-color:#E07A5F" />
+                    <stop offset="0%" style="stop-color:#D4AF37" />
+                    <stop offset="100%" style="stop-color:#B8860B" />
                   </linearGradient>
                 </defs>
                 <path d="M20 20 L20 80 L35 80 L35 55 L50 55 Q70 55 70 37.5 Q70 20 50 20 Z" fill="url(#footerLogo)" />
                 <path d="M35 35 L50 35 Q55 35 55 37.5 Q55 40 50 40 L35 40 Z" fill="#F4F3EE" />
-                <circle cx="75" cy="25" r="3" fill="#81B29A" />
-                <circle cx="80" cy="35" r="2" fill="#F2CC8F" />
+                <circle cx="75" cy="25" r="3" fill="#D4AF37" />
+                <circle cx="80" cy="35" r="2" fill="#D4AF37" />
               </svg>
             </div>
             <div>
-              <h4 class="font-playfair font-bold text-lg">Pravis Boutique</h4>
-              <p class="text-handloom-gold text-sm">Drape in Elegance</p>
+              <h4 class="font-display font-bold text-lg">Pravis Boutique</h4>
+              <p class="text-pravis-300 text-sm">Drape in Elegance</p>
             </div>
           </div>
           <p class="text-gray-300 text-sm leading-relaxed">
@@ -34,7 +34,9 @@
               v-for="social in socialLinks" 
               :key="social.name"
               :href="social.url" 
-              class="w-10 h-10 bg-handloom-rust rounded-full flex items-center justify-center hover:bg-handloom-terracotta transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-pravis-600 rounded-full flex items-center justify-center hover:bg-pravis-700 transition-colors"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path :d="social.icon" />
@@ -45,10 +47,10 @@
         
         <!-- Quick Links -->
         <div>
-          <h5 class="font-semibold mb-6 text-handloom-gold">Quick Links</h5>
+          <h5 class="font-semibold mb-6 text-pravis-300">Quick Links</h5>
           <ul class="space-y-3 text-sm">
             <li v-for="link in quickLinks" :key="link.text">
-              <a :href="link.href" class="text-gray-300 hover:text-handloom-gold transition-colors">
+              <a :href="link.href" class="text-gray-300 hover:text-pravis-300 transition-colors">
                 {{ link.text }}
               </a>
             </li>
@@ -57,22 +59,22 @@
         
         <!-- Contact Info -->
         <div>
-          <h5 class="font-semibold mb-6 text-handloom-gold">Contact Us</h5>
+          <h5 class="font-semibold mb-6 text-pravis-300">Contact Us</h5>
           <div class="space-y-3 text-sm text-gray-300">
             <div class="flex items-center space-x-3">
-              <svg class="w-4 h-4 text-handloom-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 text-pravis-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
               </svg>
               <span>+91 6300208234</span>
             </div>
             <div class="flex items-center space-x-3">
-              <svg class="w-4 h-4 text-handloom-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 text-pravis-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
               <span>hello@pravisboutique.com</span>
             </div>
             <div class="flex items-start space-x-3">
-              <svg class="w-4 h-4 text-handloom-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 text-pravis-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
@@ -83,7 +85,7 @@
         
         <!-- Newsletter -->
         <div>
-          <h5 class="font-semibold mb-6 text-handloom-gold">Stay Updated</h5>
+          <h5 class="font-semibold mb-6 text-pravis-300">Stay Updated</h5>
           <p class="text-sm text-gray-300 mb-4">Subscribe to get updates on new collections and exclusive offers.</p>
           <form @submit.prevent="handleSubscribe" class="space-y-3">
             <input 
@@ -91,11 +93,11 @@
               type="email" 
               placeholder="Enter your email" 
               required
-              class="w-full px-4 py-2 bg-white bg-opacity-10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-handloom-gold transition-colors"
+              class="w-full px-4 py-2 bg-white bg-opacity-10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-pravis-300 transition-colors"
             >
             <button 
               type="submit" 
-              class="w-full bg-handloom-rust text-white py-2 rounded-lg font-medium hover:bg-handloom-terracotta transition-colors"
+              class="w-full bg-pravis-600 text-white py-2 rounded-lg font-medium hover:bg-pravis-700 transition-colors"
             >
               Subscribe
             </button>
@@ -109,9 +111,9 @@
           © 2024 Pravis Boutique. All rights reserved. | Handcrafted with ❤️ for textile lovers
         </p>
         <div class="flex space-x-6 text-sm text-gray-400">
-          <a href="/privacy" class="hover:text-handloom-gold transition-colors">Privacy Policy</a>
-          <a href="/terms" class="hover:text-handloom-gold transition-colors">Terms of Service</a>
-          <a href="#" class="hover:text-handloom-gold transition-colors">Shipping Policy</a>
+          <a href="/privacy" class="hover:text-pravis-300 transition-colors">Privacy Policy</a>
+          <a href="/terms" class="hover:text-pravis-300 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-pravis-300 transition-colors">Shipping Policy</a>
         </div>
       </div>
     </div>
@@ -136,7 +138,7 @@ const socialLinks = [
   },
   {
     name: 'Instagram',
-    url: '#',
+    url: 'https://www.instagram.com/pravis.handlooms/?hl=en',
     icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'
   }
 ]

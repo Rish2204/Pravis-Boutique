@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen font-inter bg-handloom-cream">
+  <div class="min-h-screen font-sans bg-pravis-50">
     <!-- Privacy Consent Dialog -->
     <PrivacyConsentDialog />
     
