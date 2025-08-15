@@ -1,7 +1,7 @@
 {
-  "_hash": "QE930aWjFkk7o1ZUnQzD6dMmYbvLWp8mWUIFC2_craA",
+  "_hash": "7XRXgvIZnclsN72X6-s38njwVyYWmFsXtqbzu28NYz0",
   "project": {
-    "rootDir": "/Users/rish/Developer/Pravis-Boutique/frontend/pravis-boutique"
+    "rootDir": "/home/runner/work/Pravis-Boutique/Pravis-Boutique/frontend/pravis-boutique"
   },
   "versions": {
     "nuxt": "3.17.7"

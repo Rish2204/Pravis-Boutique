@@ -12,11 +12,20 @@ type HydrationStrategies = {
 }
 type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }>)
 interface _GlobalComponents {
-      'AnimatedLogo': typeof import("../components/AnimatedLogo.vue")['default']
+      'AboutSection': typeof import("../components/AboutSection.vue")['default']
+    'AnimatedLogo': typeof import("../components/AnimatedLogo.vue")['default']
+    'FeaturedProducts': typeof import("../components/FeaturedProducts.vue")['default']
+    'FooterSection': typeof import("../components/FooterSection.vue")['default']
     'HeroCarousel': typeof import("../components/HeroCarousel.vue")['default']
+    'HeroSection': typeof import("../components/HeroSection.vue")['default']
+    'Navigation': typeof import("../components/Navigation.vue")['default']
+    'PrivacyConsentDialog': typeof import("../components/PrivacyConsentDialog.vue")['default']
+    'ProductCard': typeof import("../components/ProductCard.vue")['default']
     'PushNotificationManager': typeof import("../components/PushNotificationManager.vue")['default']
+    'VoiceAssistantModal': typeof import("../components/VoiceAssistantModal.vue")['default']
     'CommonButton': typeof import("../components/common/Button.vue")['default']
     'CommonConsentDialog': typeof import("../components/common/ConsentDialog.vue")['default']
+    'CommonContactUsBox': typeof import("../components/common/ContactUsBox.vue")['default']
     'CommonDarkModeToggle': typeof import("../components/common/DarkModeToggle.vue")['default']
     'CommonPrivacyControls': typeof import("../components/common/PrivacyControls.vue")['default']
     'CommonProductCard': typeof import("../components/common/ProductCard.vue")['default']
@@ -47,11 +56,20 @@ interface _GlobalComponents {
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
-      'LazyAnimatedLogo': LazyComponent<typeof import("../components/AnimatedLogo.vue")['default']>
+      'LazyAboutSection': LazyComponent<typeof import("../components/AboutSection.vue")['default']>
+    'LazyAnimatedLogo': LazyComponent<typeof import("../components/AnimatedLogo.vue")['default']>
+    'LazyFeaturedProducts': LazyComponent<typeof import("../components/FeaturedProducts.vue")['default']>
+    'LazyFooterSection': LazyComponent<typeof import("../components/FooterSection.vue")['default']>
     'LazyHeroCarousel': LazyComponent<typeof import("../components/HeroCarousel.vue")['default']>
+    'LazyHeroSection': LazyComponent<typeof import("../components/HeroSection.vue")['default']>
+    'LazyNavigation': LazyComponent<typeof import("../components/Navigation.vue")['default']>
+    'LazyPrivacyConsentDialog': LazyComponent<typeof import("../components/PrivacyConsentDialog.vue")['default']>
+    'LazyProductCard': LazyComponent<typeof import("../components/ProductCard.vue")['default']>
     'LazyPushNotificationManager': LazyComponent<typeof import("../components/PushNotificationManager.vue")['default']>
+    'LazyVoiceAssistantModal': LazyComponent<typeof import("../components/VoiceAssistantModal.vue")['default']>
     'LazyCommonButton': LazyComponent<typeof import("../components/common/Button.vue")['default']>
     'LazyCommonConsentDialog': LazyComponent<typeof import("../components/common/ConsentDialog.vue")['default']>
+    'LazyCommonContactUsBox': LazyComponent<typeof import("../components/common/ContactUsBox.vue")['default']>
     'LazyCommonDarkModeToggle': LazyComponent<typeof import("../components/common/DarkModeToggle.vue")['default']>
     'LazyCommonPrivacyControls': LazyComponent<typeof import("../components/common/PrivacyControls.vue")['default']>
     'LazyCommonProductCard': LazyComponent<typeof import("../components/common/ProductCard.vue")['default']>
@@ -88,11 +106,20 @@ declare module 'vue' {
   export interface GlobalComponents extends _GlobalComponents { }
 }
 
+export const AboutSection: typeof import("../components/AboutSection.vue")['default']
 export const AnimatedLogo: typeof import("../components/AnimatedLogo.vue")['default']
+export const FeaturedProducts: typeof import("../components/FeaturedProducts.vue")['default']
+export const FooterSection: typeof import("../components/FooterSection.vue")['default']
 export const HeroCarousel: typeof import("../components/HeroCarousel.vue")['default']
+export const HeroSection: typeof import("../components/HeroSection.vue")['default']
+export const Navigation: typeof import("../components/Navigation.vue")['default']
+export const PrivacyConsentDialog: typeof import("../components/PrivacyConsentDialog.vue")['default']
+export const ProductCard: typeof import("../components/ProductCard.vue")['default']
 export const PushNotificationManager: typeof import("../components/PushNotificationManager.vue")['default']
+export const VoiceAssistantModal: typeof import("../components/VoiceAssistantModal.vue")['default']
 export const CommonButton: typeof import("../components/common/Button.vue")['default']
 export const CommonConsentDialog: typeof import("../components/common/ConsentDialog.vue")['default']
+export const CommonContactUsBox: typeof import("../components/common/ContactUsBox.vue")['default']
 export const CommonDarkModeToggle: typeof import("../components/common/DarkModeToggle.vue")['default']
 export const CommonPrivacyControls: typeof import("../components/common/PrivacyControls.vue")['default']
 export const CommonProductCard: typeof import("../components/common/ProductCard.vue")['default']
@@ -123,11 +150,20 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+export const LazyAboutSection: LazyComponent<typeof import("../components/AboutSection.vue")['default']>
 export const LazyAnimatedLogo: LazyComponent<typeof import("../components/AnimatedLogo.vue")['default']>
+export const LazyFeaturedProducts: LazyComponent<typeof import("../components/FeaturedProducts.vue")['default']>
+export const LazyFooterSection: LazyComponent<typeof import("../components/FooterSection.vue")['default']>
 export const LazyHeroCarousel: LazyComponent<typeof import("../components/HeroCarousel.vue")['default']>
+export const LazyHeroSection: LazyComponent<typeof import("../components/HeroSection.vue")['default']>
+export const LazyNavigation: LazyComponent<typeof import("../components/Navigation.vue")['default']>
+export const LazyPrivacyConsentDialog: LazyComponent<typeof import("../components/PrivacyConsentDialog.vue")['default']>
+export const LazyProductCard: LazyComponent<typeof import("../components/ProductCard.vue")['default']>
 export const LazyPushNotificationManager: LazyComponent<typeof import("../components/PushNotificationManager.vue")['default']>
+export const LazyVoiceAssistantModal: LazyComponent<typeof import("../components/VoiceAssistantModal.vue")['default']>
 export const LazyCommonButton: LazyComponent<typeof import("../components/common/Button.vue")['default']>
 export const LazyCommonConsentDialog: LazyComponent<typeof import("../components/common/ConsentDialog.vue")['default']>
+export const LazyCommonContactUsBox: LazyComponent<typeof import("../components/common/ContactUsBox.vue")['default']>
 export const LazyCommonDarkModeToggle: LazyComponent<typeof import("../components/common/DarkModeToggle.vue")['default']>
 export const LazyCommonPrivacyControls: LazyComponent<typeof import("../components/common/PrivacyControls.vue")['default']>
 export const LazyCommonProductCard: LazyComponent<typeof import("../components/common/ProductCard.vue")['default']>
