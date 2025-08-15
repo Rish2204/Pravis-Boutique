@@ -37,12 +37,5 @@ pytest-cov>=4.1.0,<5.0.0
 # State Management
 automat>=22.10.0,<23.0.0
 
-# AI Agent Dependencies  
-selenium>=4.15.0,<5.0.0
-beautifulsoup4>=4.12.0,<5.0.0
-openai>=1.3.0,<2.0.0
-anthropic>=0.7.0,<1.0.0
-requests>=2.31.0,<3.0.0
-
-# OpenAI Agents Framework
-openai-agents>=0.1.0
+# Data Processing (if needed for other features)
+pandas>=2.0.0,<3.0.0
