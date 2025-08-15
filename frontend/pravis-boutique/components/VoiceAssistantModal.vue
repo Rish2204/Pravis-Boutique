@@ -7,12 +7,12 @@
     >
       <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
         <div class="text-center">
-          <div class="w-16 h-16 bg-handloom-sage rounded-full flex items-center justify-center mx-auto mb-4 voice-pulse">
+          <div class="w-16 h-16 bg-pravis-600 rounded-full flex items-center justify-center mx-auto mb-4 voice-pulse">
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-playfair font-semibold text-handloom-deep mb-2">Hi! I'm Pravi</h3>
+          <h3 class="text-xl font-display font-semibold text-pravis-800 mb-2">Hi! I'm Pravi</h3>
           <p class="text-gray-600 mb-6">Your AI shopping assistant. Ask me about our handloom collection, sizing, or styling advice!</p>
           
           <div class="space-y-3 mb-6">
@@ -20,7 +20,7 @@
               v-for="suggestion in suggestions" 
               :key="suggestion"
               @click="askQuestion(suggestion)"
-              class="w-full text-left p-3 bg-handloom-cream rounded-lg hover:bg-handloom-gold hover:bg-opacity-30 transition-colors"
+              class="w-full text-left p-3 bg-pravis-50 rounded-lg hover:bg-pravis-100 transition-colors"
             >
               "{{ suggestion }}"
             </button>
@@ -35,7 +35,7 @@
             <button 
               @click="startVoiceRecording" 
               :disabled="isRecording"
-              class="flex-1 bg-handloom-sage text-white px-4 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-colors disabled:opacity-50"
+              class="flex-1 bg-pravis-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-pravis-700 transition-colors disabled:opacity-50"
             >
               {{ isRecording ? '🔴 Recording...' : '🎤 Speak' }}
             </button>
