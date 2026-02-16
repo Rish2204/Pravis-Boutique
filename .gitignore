@@ -3,18 +3,15 @@
 .env.local
 .env.*.local
 
-# Virtual environments
-venv/
-.venv/
-env/
-ENV/
+# Dependencies
+node_modules/
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
+# Build outputs
+dist/
+.nuxt/
+.output/
+.nitro/
+.cache/
 
 # IDE
 .vscode/
@@ -23,44 +20,15 @@ __pycache__/
 *.swo
 *~
 
-# Database
-*.db
-*.sqlite3
-
-# Logs
-*.log
-frontend.log
-backend_debug.log
-test-whatsapp.html
-
 # OS
 .DS_Store
 Thumbs.db
 
-# Protected documents (decrypted versions)
-MCP_ARCHITECTURE.md
-
-# Node modules (for frontend)
-node_modules/
-
-# Build outputs
-dist/
-build/
-*.egg-info/
-.nuxt/
-.output/
-
-# Nuxt/Vue specific
-.nitro/
-.cache/
-
 # Test coverage
-htmlcov/
-.coverage
-.pytest_cache/
+coverage/
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Logs
+*.log
 
 # Azure
 local.settings.json
