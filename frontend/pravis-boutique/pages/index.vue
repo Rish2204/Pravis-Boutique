@@ -1,8 +1,5 @@
 <template>
   <div class="min-h-screen font-sans bg-pravis-50">
-    <!-- Privacy Consent Dialog -->
-    <PrivacyConsentDialog />
-    
     <!-- Navigation -->
     <Navigation @toggle-voice-assistant="toggleVoiceAssistant" />
     
@@ -29,7 +26,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import Navigation from '~/components/Navigation.vue'
-import PrivacyConsentDialog from '~/components/PrivacyConsentDialog.vue'
 import VoiceAssistantModal from '~/components/VoiceAssistantModal.vue'
 import HeroSection from '~/components/HeroSection.vue'
 import FeaturedProducts from '~/components/FeaturedProducts.vue'
