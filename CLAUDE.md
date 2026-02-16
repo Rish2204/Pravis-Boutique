@@ -1,38 +1,58 @@
-# Pravis Boutique Development Status
+# Pravis Boutique
 
-## Current Progress (July 30, 2025)
+## Architecture (v2.0)
+- **Stack**: Nuxt 3 + Vue 3 + TypeScript + Tailwind CSS + Pinia
+- **No backend** - frontend-only webapp (database layer to be added later)
+- **Product data**: Static/dummy data in `composables/useProductData.ts`
+- **State management**: Pinia stores (`store/cart.ts`, `store/user.ts`)
+- **Styling**: Tailwind CSS with custom brand colors (maroon #8B0000, gold #D4AF37)
 
-### ✅ Completed Tasks:
-1. **Website Layout Updates** - Updated to match brand image exactly
-2. **P-Peacock Logo Implementation** - Created custom SVG logo component
-   - Integrated P letterform with stylized peacock design
-   - Traditional Indian decorative motifs and flourishes
-   - Gold color scheme (#D4AF37) matching brand
-   - Static presentation (no floating animation)
-   - Responsive design for all screen sizes
+## Project Structure
+```
+/                       # Nuxt 3 project root
+├── app.vue             # Root app component
+├── nuxt.config.ts      # Nuxt configuration (TypeScript strict mode)
+├── tsconfig.json       # TypeScript config extending Nuxt
+├── package.json        # Dependencies and scripts
+├── tailwind.config.js  # Tailwind with custom pravis theme
+├── pages/              # File-based routing
+│   ├── index.vue       # Homepage (hero, featured, about, footer)
+│   ├── shop/index.vue  # Product listing with filters
+│   ├── shop/product/[id].vue  # Product detail page
+│   ├── cart.vue        # Shopping cart
+│   ├── contact.vue     # Contact page
+│   ├── privacy.vue     # Privacy policy
+│   └── terms.vue       # Terms of service
+├── components/         # Vue components
+│   ├── Navigation.vue  # Top nav with logo
+│   ├── HeroSection.vue / HeroCarousel.vue
+│   ├── AnimatedLogo.vue  # P-Peacock SVG logo
+│   ├── FeaturedProducts.vue
+│   ├── AboutSection.vue
+│   ├── FooterSection.vue
+│   └── common/         # Reusable UI components
+├── composables/        # Vue composables
+│   ├── useProductData.ts  # Static product catalog
+│   └── useProducts.ts     # Product query helpers
+├── store/              # Pinia stores (TypeScript)
+│   ├── cart.ts         # Shopping cart (localStorage)
+│   └── user.ts         # User auth state
+├── layouts/default.vue # Default layout
+├── assets/css/main.css # Global styles
+└── public/             # Static assets (logos, fonts, images)
+```
 
-### 🔄 Current State:
-- **Frontend**: Nuxt.js 3 application running on localhost:3000
-- **Backend**: FastAPI server running on localhost:8000
-- **Brand Identity**: Pravis handloom boutique with maroon/gold theme
-- **Logo**: P-Peacock combination in circular gold frame
-- **Layout**: Clean, centered design matching provided brand image
+## Key Commands
+```bash
+npm run dev          # Start dev server (localhost:3000)
+npm run build        # Production build
+npm run typecheck    # TypeScript type checking
+npm run lint         # ESLint
+npm run test         # Vitest unit tests
+```
 
-### 🎯 Key Files Modified:
-- `components/AnimatedLogo.vue` - P-Peacock SVG logo component
-- `components/HeroCarousel.vue` - Updated hero section layout
-- `pages/index.vue` - Simplified homepage structure
-- `layouts/default.vue` - Conditional header for different pages
-- `backend/requirements.txt` - Added OpenAI Agents framework (pending)
-
-### 📋 Next Steps Discussion:
-- User mentioned potential AI agent integration using OpenAI Agents Python SDK
-- SVG path extraction techniques discussed for logo refinement
-- OpenAI libraries for image analysis and component generation explored
-
-### 💡 Reminder Context:
-When user asks "where did we leave the thread":
-**We completed the P-Peacock logo implementation for Pravis Boutique. The logo now displays correctly in the hero section with traditional Indian decorative elements integrated into a stylized P-peacock combination. We discussed OpenAI agent integration and SVG path extraction techniques. The website layout matches the provided brand image with proper maroon/gold theming. Next session can continue with AI agent implementation or logo refinements.**
-
----
-*Last updated: July 30, 2025 - Session ended with P-Peacock logo successfully implemented*
+## Branch Strategy
+- `main` - stable releases
+- `main` → `feature/design` - UI/UX design work
+- `main` → `feature/database` - storage, retrieval, transformation layers
+- `main` → `feature/frontend` - frontend TypeScript modules
