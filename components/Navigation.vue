@@ -3,21 +3,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between gap-4">
         <NuxtLink to="/" class="flex items-center space-x-3" aria-label="Pravis Boutique home">
-          <div class="w-10 h-10">
-            <svg viewBox="0 0 100 100" class="w-full h-full">
-              <defs>
-                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#8B0000" />
-                  <stop offset="50%" style="stop-color:#A0001C" />
-                  <stop offset="100%" style="stop-color:#D4AF37" />
-                </linearGradient>
-              </defs>
-              <path d="M20 20 L20 80 L35 80 L35 55 L50 55 Q70 55 70 37.5 Q70 20 50 20 Z" fill="url(#logoGrad)" />
-              <path d="M35 35 L50 35 Q55 35 55 37.5 Q55 40 50 40 L35 40 Z" fill="#F4F3EE" />
-              <circle cx="75" cy="25" r="3" fill="#D4AF37" />
-              <circle cx="80" cy="35" r="2" fill="#D4AF37" />
-              <path d="M70 15 Q75 10 80 15 Q75 20 70 15" fill="#A0001C" opacity="0.7" />
-            </svg>
+          <div class="flex h-11 w-11 items-center justify-center rounded-full border border-pravis-200 bg-pravis-800 shadow-sm">
+            <span class="font-display text-lg font-bold tracking-wide text-pravis-300">PB</span>
           </div>
           <div>
             <h1 class="text-xl font-display font-bold text-pravis-800">Pravis Boutique</h1>
