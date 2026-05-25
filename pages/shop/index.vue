@@ -1,241 +1,275 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-pravis-600 to-saffron-600 text-white py-16">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl font-bold mb-4">Handloom Collection</h1>
-        <p class="text-xl text-pravis-100">
-          Discover authentic handwoven treasures crafted by skilled artisans
-        </p>
-      </div>
-    </div>
-
-    <!-- Products Section -->
-    <div class="container mx-auto px-4 py-12">
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Featured Products</h2>
-        <p class="text-gray-600">Browse our collection of authentic handloom textiles</p>
-      </div>
-
-      <!-- Product Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <div 
-          v-for="product in products" 
-          :key="product.id"
-          class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-        >
-          <!-- Product Image Placeholder -->
-          <div class="h-48 bg-gradient-to-br from-pravis-100 to-saffron-100 flex items-center justify-center">
-            <div class="text-center p-4">
-              <div class="w-16 h-16 mx-auto mb-3 bg-pravis-200 rounded-full flex items-center justify-center">
-                <svg class="w-8 h-8 text-pravis-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                </svg>
-              </div>
-              <p class="text-xs text-pravis-600 font-medium">{{ product.fabric }}</p>
-            </div>
-          </div>
-
-          <!-- Product Info -->
-          <div class="p-4">
-            <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2">{{ product.name }}</h3>
-            <p class="text-sm text-gray-600 mb-3 line-clamp-2">{{ product.description }}</p>
-            
-            <!-- Rating -->
-            <div class="flex items-center mb-3">
-              <div class="flex">
-                <svg 
-                  v-for="star in 5" 
-                  :key="star"
-                  :class="star <= Math.round(product.rating) ? 'text-yellow-400' : 'text-gray-300'"
-                  class="w-4 h-4"
-                  fill="currentColor" 
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-              </div>
-              <span class="ml-2 text-sm text-gray-500">({{ product.reviews }})</span>
-            </div>
-
-            <!-- Price and Origin -->
-            <div class="flex items-center justify-between mb-4">
-              <div>
-                <span class="text-xl font-bold text-pravis-600">₹{{ product.price }}</span>
-                <span v-if="product.originalPrice > product.price" class="ml-2 text-sm text-gray-500 line-through">
-                  ₹{{ product.originalPrice }}
-                </span>
-              </div>
-              <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                {{ product.origin }}
-              </span>
-            </div>
-
-            <!-- Add to Cart Button -->
-            <button 
-              @click="addToCart(product)"
-              class="w-full px-4 py-2 text-sm font-medium rounded-md transition-colors bg-pravis-600 hover:bg-pravis-700 text-white"
+  <div class="min-h-screen bg-pravis-50">
+    <section class="bg-gradient-to-br from-pravis-800 via-pravis-700 to-saffron-600 text-white">
+      <div class="container mx-auto px-4 py-16 lg:py-20">
+        <div class="max-w-3xl">
+          <p class="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-saffron-100">Pravis Boutique catalog</p>
+          <h1 class="text-4xl font-bold leading-tight lg:text-6xl">Browse Indian attires for every occasion</h1>
+          <p class="mt-5 text-lg leading-8 text-pravis-100">
+            Sarees, suit sets, dupattas, lehengas, shawls, and handloom-inspired pieces. Use WhatsApp for real-time availability, Instagram for latest looks, and Amazon for marketplace browsing.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              :href="whatsappCatalogUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 font-semibold text-pravis-800 transition hover:bg-saffron-100"
             >
-              Inquire on WhatsApp
-            </button>
+              Ask on WhatsApp
+            </a>
+            <a
+              :href="instagramUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center rounded-full border border-white/70 px-7 py-3 font-semibold text-white transition hover:bg-white/10"
+            >
+              View Instagram
+            </a>
+            <a
+              :href="amazonCatalogUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center rounded-full bg-[#232f3e] px-7 py-3 font-semibold text-white transition hover:bg-[#131921]"
+            >
+              Browse Amazon
+            </a>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Empty State -->
-      <div v-if="products.length === 0" class="text-center py-16">
-        <div class="w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center">
-          <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-          </svg>
+    <section class="container mx-auto px-4 py-10">
+      <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-950">Shop by style</h2>
+          <p class="mt-2 text-gray-600">Filter visually by the categories customers usually ask for first.</p>
         </div>
-        <h3 class="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-        <p class="text-gray-600">Check back soon for new arrivals!</p>
+        <div class="flex flex-wrap gap-2">
+          <button
+            v-for="category in categories"
+            :key="category"
+            @click="activeCategory = category"
+            class="rounded-full border px-4 py-2 text-sm font-semibold transition"
+            :class="activeCategory === category ? 'border-pravis-700 bg-pravis-700 text-white' : 'border-pravis-200 bg-white text-pravis-700 hover:bg-pravis-50'"
+          >
+            {{ category }}
+          </button>
+        </div>
       </div>
-    </div>
 
-    <!-- Back to Home -->
-    <div class="text-center pb-12">
-      <NuxtLink to="/" class="inline-flex items-center text-pravis-600 hover:text-pravis-700 font-medium">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Back to Home
-      </NuxtLink>
-    </div>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <article
+          v-for="product in filteredProducts"
+          :key="product.id"
+          class="overflow-hidden rounded-2xl border border-pravis-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+        >
+          <div class="relative h-56 overflow-hidden" :style="{ background: product.background }">
+            <div class="absolute inset-0 opacity-30" :style="{ backgroundImage: product.pattern }"></div>
+            <div class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-pravis-700 shadow-sm">
+              {{ product.category }}
+            </div>
+            <div class="absolute right-4 top-4 rounded-full bg-pravis-900/80 px-3 py-1 text-xs font-bold text-white">
+              {{ product.availability }}
+            </div>
+            <div class="absolute inset-x-5 bottom-5 rounded-2xl bg-white/90 p-4 shadow-lg backdrop-blur">
+              <p class="text-sm font-semibold text-pravis-700">{{ product.fabric }}</p>
+              <p class="mt-1 text-xs text-gray-600">{{ product.origin }}</p>
+            </div>
+          </div>
+
+          <div class="p-5">
+            <div class="mb-4 min-h-[132px]">
+              <h3 class="text-lg font-bold text-gray-950">{{ product.name }}</h3>
+              <p class="mt-2 text-sm leading-6 text-gray-600">{{ product.description }}</p>
+            </div>
+
+            <div class="mb-5 flex items-center justify-between gap-3">
+              <div>
+                <p class="text-xl font-bold text-pravis-700">Rs. {{ product.price.toLocaleString('en-IN') }}</p>
+                <p v-if="product.originalPrice > product.price" class="text-sm text-gray-500 line-through">Rs. {{ product.originalPrice.toLocaleString('en-IN') }}</p>
+              </div>
+              <span class="rounded-full bg-saffron-100 px-3 py-1 text-xs font-bold text-pravis-800">{{ product.tag }}</span>
+            </div>
+
+            <div class="grid gap-2">
+              <a
+                :href="buildWhatsappUrl(product)"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center rounded-xl bg-pravis-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-pravis-800"
+              >
+                WhatsApp Inquiry
+              </a>
+              <div class="grid grid-cols-2 gap-2">
+                <a
+                  :href="instagramUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center rounded-xl border border-pravis-200 px-4 py-3 text-sm font-semibold text-pravis-700 transition hover:bg-pravis-50"
+                >
+                  Instagram
+                </a>
+                <a
+                  :href="product.amazonUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center rounded-xl bg-[#232f3e] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#131921]"
+                >
+                  Amazon
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div v-if="filteredProducts.length === 0" class="rounded-2xl bg-white py-16 text-center shadow-sm">
+        <h3 class="text-xl font-semibold text-gray-900">No products found</h3>
+        <p class="mt-2 text-gray-600">Try another category.</p>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, ref } from 'vue'
 
-// Page metadata
 useHead({
-  title: 'Shop - Pravis Boutique',
+  title: 'Shop Indian Attires - Pravis Boutique',
   meta: [
-    { name: 'description', content: 'Browse our collection of authentic handloom textiles and handwoven treasures.' }
+    { name: 'description', content: 'Browse Pravis Boutique Indian attire collections with WhatsApp, Instagram, and Amazon shopping links.' }
   ]
 })
 
-// Dummy product data
+const whatsappPhone = '916300208234'
+const instagramUrl = 'https://www.instagram.com/pravis.handlooms/?hl=en'
+const amazonCatalogUrl = 'https://www.amazon.in/s?k=Pravis+Boutique+Indian+attire'
+const whatsappCatalogUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent('Hi Pravis Boutique, I want to browse your Indian attire catalog.')}`
+
+const categories = ['All', 'Sarees', 'Suit sets', 'Dupattas', 'Lehengas', 'Shawls']
+const activeCategory = ref('All')
+
 const products = ref([
   {
     id: 1,
-    name: "Banarasi Silk Saree - Golden Thread",
+    name: 'Banarasi Silk Saree - Golden Thread',
     price: 15999,
     originalPrice: 18999,
-    category: "sarees",
-    fabric: "Pure Silk",
-    origin: "Varanasi, UP",
-    rating: 4.8,
-    reviews: 124,
-    inStock: true,
-    description: "Exquisite Banarasi silk saree with intricate golden thread work and traditional motifs."
+    category: 'Sarees',
+    fabric: 'Pure Silk',
+    origin: 'Varanasi, UP',
+    tag: 'Wedding pick',
+    availability: 'Ask for colors',
+    description: 'Rich Banarasi-inspired saree with golden thread work and traditional motifs.',
+    background: 'linear-gradient(135deg, #8B0000, #D4AF37)',
+    pattern: 'radial-gradient(circle at 24px 24px, rgba(255,255,255,.55) 2px, transparent 3px)',
+    amazonUrl: 'https://www.amazon.in/s?k=Pravis+Boutique+Banarasi+Silk+Saree'
   },
   {
     id: 2,
-    name: "Handwoven Cotton Kurta Set",
+    name: 'Handwoven Cotton Kurta Set',
     price: 3499,
     originalPrice: 3499,
-    category: "kurtas",
-    fabric: "Pure Cotton",
-    origin: "Lucknow, UP",
-    rating: 4.6,
-    reviews: 89,
-    inStock: true,
-    description: "Comfortable handwoven cotton kurta with traditional embroidery and matching dupatta."
+    category: 'Suit sets',
+    fabric: 'Pure Cotton',
+    origin: 'Lucknow, UP',
+    tag: 'Daily wear',
+    availability: 'Sizes vary',
+    description: 'Comfortable cotton kurta set with easy styling for office, home, and casual outings.',
+    background: 'linear-gradient(135deg, #81B29A, #F2CC8F)',
+    pattern: 'radial-gradient(circle at 30px 30px, rgba(255,255,255,.45) 5px, transparent 6px)',
+    amazonUrl: 'https://www.amazon.in/s?k=Pravis+Boutique+Cotton+Kurta+Set'
   },
   {
     id: 3,
-    name: "Kashmiri Pashmina Shawl",
+    name: 'Kashmiri Pashmina Shawl',
     price: 8999,
     originalPrice: 10999,
-    category: "shawls",
-    fabric: "Pashmina",
-    origin: "Kashmir",
-    rating: 4.9,
-    reviews: 56,
-    inStock: true,
-    description: "Luxurious Kashmiri pashmina shawl with delicate hand-embroidered patterns."
+    category: 'Shawls',
+    fabric: 'Pashmina',
+    origin: 'Kashmir',
+    tag: 'Gift edit',
+    availability: 'Limited',
+    description: 'Soft shawl with delicate embroidery-inspired detailing for gifting and winter styling.',
+    background: 'linear-gradient(135deg, #3D405B, #F2CC8F)',
+    pattern: 'repeating-linear-gradient(90deg, rgba(255,255,255,.28) 0 2px, transparent 2px 18px)',
+    amazonUrl: 'https://www.amazon.in/s?k=Pravis+Boutique+Pashmina+Shawl'
   },
   {
     id: 4,
-    name: "Chanderi Silk Dupatta",
+    name: 'Chanderi Silk Dupatta',
     price: 2799,
     originalPrice: 2799,
-    category: "dupatta",
-    fabric: "Chanderi Silk",
-    origin: "Chanderi, MP",
-    rating: 4.7,
-    reviews: 78,
-    inStock: true,
-    description: "Elegant Chanderi silk dupatta with traditional zari work and floral motifs."
+    category: 'Dupattas',
+    fabric: 'Chanderi Silk',
+    origin: 'Chanderi, MP',
+    tag: 'Lightweight',
+    availability: 'Inquire',
+    description: 'Elegant dupatta with festive shine that pairs with plain kurtas and suit sets.',
+    background: 'linear-gradient(135deg, #E07A5F, #F2CC8F)',
+    pattern: 'linear-gradient(45deg, rgba(255,255,255,.32) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.32) 50%, rgba(255,255,255,.32) 75%, transparent 75%)',
+    amazonUrl: 'https://www.amazon.in/s?k=Pravis+Boutique+Chanderi+Silk+Dupatta'
   },
   {
     id: 5,
-    name: "Handloom Linen Saree",
+    name: 'Handloom Linen Saree',
     price: 4999,
     originalPrice: 5999,
-    category: "sarees",
-    fabric: "Pure Linen",
-    origin: "Kerala",
-    rating: 4.5,
-    reviews: 92,
-    inStock: true,
-    description: "Breathable handloom linen saree perfect for everyday wear with subtle border designs."
+    category: 'Sarees',
+    fabric: 'Pure Linen',
+    origin: 'Kerala',
+    tag: 'Everyday saree',
+    availability: 'Ask for stock',
+    description: 'Breathable handloom-style linen saree with subtle border details.',
+    background: 'linear-gradient(135deg, #6B705C, #DDBEA9)',
+    pattern: 'repeating-linear-gradient(0deg, rgba(255,255,255,.22) 0 3px, transparent 3px 16px)',
+    amazonUrl: 'https://www.amazon.in/s?k=Pravis+Boutique+Handloom+Linen+Saree'
   },
   {
     id: 6,
-    name: "Rajasthani Block Print Lehenga",
+    name: 'Rajasthani Block Print Lehenga',
     price: 12999,
     originalPrice: 15999,
-    category: "lehenga",
-    fabric: "Cotton Silk",
-    origin: "Jaipur, Rajasthan",
-    rating: 4.8,
-    reviews: 67,
-    inStock: true,
-    description: "Vibrant Rajasthani block print lehenga with mirror work and traditional patterns."
+    category: 'Lehengas',
+    fabric: 'Cotton Silk',
+    origin: 'Jaipur, Rajasthan',
+    tag: 'Event wear',
+    availability: 'Pre-order',
+    description: 'Vibrant block-print inspired lehenga with festive mirror-work styling.',
+    background: 'linear-gradient(135deg, #BC4749, #F2E8CF)',
+    pattern: 'radial-gradient(circle at 28px 28px, rgba(255,255,255,.45) 4px, transparent 5px)',
+    amazonUrl: 'https://www.amazon.in/s?k=Pravis+Boutique+Rajasthani+Block+Print+Lehenga'
   },
   {
     id: 7,
-    name: "Elegant Floral Print Cotton Suit Set",
+    name: 'Floral Print Cotton Suit Set',
     price: 4999,
     originalPrice: 5999,
-    category: "suits",
-    fabric: "Pure Cotton",
-    origin: "Handcrafted",
-    rating: 4.8,
-    reviews: 0,
-    inStock: true,
-    description: "Exquisite white cotton suit set featuring delicate pink floral prints with gold-embellished neckline. Complete 3-piece set includes kurta, matching pants, and coordinating dupatta."
+    category: 'Suit sets',
+    fabric: 'Pure Cotton',
+    origin: 'Handcrafted edit',
+    tag: 'Fresh arrival',
+    availability: 'Ask for sizes',
+    description: 'Three-piece cotton suit set with floral print, pants, and matching dupatta.',
+    background: 'linear-gradient(135deg, #F4A7B9, #F8EDEB)',
+    pattern: 'radial-gradient(circle at 22px 22px, rgba(139,0,0,.22) 3px, transparent 4px)',
+    amazonUrl: 'https://www.amazon.in/s?k=Pravis+Boutique+Floral+Cotton+Suit+Set'
   }
 ])
 
-// Methods
-const addToCart = (product) => {
-  console.log('Add to cart clicked for:', product.name)
-  
-  const phoneNumber = '916300208234'
-  const message = `Hi! I'm interested in ${product.name} from Pravis Boutique. Price: ₹${product.price}`
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-  
-  console.log('WhatsApp URL:', whatsappUrl)
-  
-  // Simple direct navigation
-  window.open(whatsappUrl, '_blank')
+const filteredProducts = computed(() => {
+  if (activeCategory.value === 'All') return products.value
+  return products.value.filter(product => product.category === activeCategory.value)
+})
+
+const buildWhatsappUrl = (product) => {
+  const message = `Hi Pravis Boutique, I am interested in ${product.name}. Price: Rs. ${product.price.toLocaleString('en-IN')}. Can you share photos, availability, sizing, and order details?`
+  return `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`
 }
 </script>
 
 <style scoped>
 .container {
   max-width: 1200px;
-}
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 </style>
