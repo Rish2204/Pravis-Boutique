@@ -4,19 +4,8 @@
       <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.9fr_1.1fr] mb-12">
         <div class="space-y-5">
           <div class="flex items-center space-x-3">
-            <div class="w-10 h-10">
-              <svg viewBox="0 0 100 100" class="w-full h-full">
-                <defs>
-                  <linearGradient id="footerLogo" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#D4AF37" />
-                    <stop offset="100%" style="stop-color:#B8860B" />
-                  </linearGradient>
-                </defs>
-                <path d="M20 20 L20 80 L35 80 L35 55 L50 55 Q70 55 70 37.5 Q70 20 50 20 Z" fill="url(#footerLogo)" />
-                <path d="M35 35 L50 35 Q55 35 55 37.5 Q55 40 50 40 L35 40 Z" fill="#F4F3EE" />
-                <circle cx="75" cy="25" r="3" fill="#D4AF37" />
-                <circle cx="80" cy="35" r="2" fill="#D4AF37" />
-              </svg>
+            <div class="flex h-11 w-11 items-center justify-center rounded-full border border-pravis-300/40 bg-white/10">
+              <span class="font-display text-lg font-bold tracking-wide text-pravis-300">PB</span>
             </div>
             <div>
               <h4 class="font-display font-bold text-lg">Pravis Boutique</h4>
