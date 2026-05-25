@@ -64,8 +64,8 @@ export default defineNuxtConfig({
     }
   },
 
-  // Development tools
-  devtools: { enabled: true },
+  // Keep local storefront previews free of development overlays.
+  devtools: { enabled: false },
 
   // Vite configuration
   vite: {
